@@ -10,7 +10,7 @@
     "about": "an agent is ABP_ROLE, or the one sgit key label \"<role>-sovereignwebsite\" in ~/.sg-send/keys/*/metadata.json (made by tools/setup-signing.sh: b.abp's label is b-abp-sovereignwebsite); none or two: unidentified"
   },
   "mode": "observe",
-  "mode_note": "Log-only, at Dinis's word (25 Nov 2026): every call outside a grant is logged and allowed. No breaker is on. Blocking comes rule by rule, only at Dinis's word.",
+  "mode_note": "Observe (log-only) for everything except two breakers, at Dinis's word on 25 Nov 2026: R3 (connectors) and R6 for tampering with protected paths. Other rules log and allow.",
   "logging": {
     "include_text": false,
     "about": "false: prompts and tool targets are logged and reported as length and a keyed hash only. true (the owner's opt-in; never for a public repository): the hook also logs redacted text, and a run report carries it only with --include-text."
@@ -74,8 +74,24 @@
     }
   ],
   "breakers": {
-    "about": "rule id -> {on, since, why, by}. None on: log-only.",
-    "rules": {}
+    "about": "rule id -> {on, since, by, why, kinds?}: an 'on' breaker blocks that rule even in observe mode; with 'kinds', only denials of those kinds. R3's also blocks every mcp__ tool not granted, session tools included.",
+    "rules": {
+      "R3": {
+        "on": true,
+        "since": "2026-11-25T21:01Z",
+        "by": "Dinis Cruz in b.abp's session, 25 Nov 2026: \"Yes, switch on R3 and R6, and allow PR-1\"",
+        "why": "a connector reaches the accounts of whoever started the session; none without a written grant"
+      },
+      "R6": {
+        "on": true,
+        "kinds": [
+          "tamper"
+        ],
+        "since": "2026-11-25T21:01Z",
+        "by": "Dinis Cruz in b.abp's session, 25 Nov 2026: \"Yes, switch on R3 and R6, and allow PR-1\"",
+        "why": "editing .claude/, abp/, the signing scripts or .git/config switches off or subverts the barrier itself, mid-session; other R6 writes stay log-only"
+      }
+    }
   },
   "tools": {
     "builtin_allowed": [
@@ -102,7 +118,8 @@
       "EnterPlanMode",
       "ExitPlanMode",
       "Monitor",
-      "LSP"
+      "LSP",
+      "ReadNotifications"
     ],
     "builtin_by_grant": {
       "Agent": "subagents",
@@ -319,7 +336,9 @@
         "rule": "R2",
         "what": "add ReadNotifications to tools.builtin_allowed",
         "evidence": "~/.abp/log, b.abp's session, 20:57:50 UTC: ReadNotifications logged as denied-tool (R2). It reads the session's queued messages; it sends nothing. Every cloud session needs it to receive other agents' messages.",
-        "status": "waiting on Dinis"
+        "status": "applied",
+        "decided": "Dinis Cruz in b.abp's session, 25 Nov 2026: \"Yes, switch on R3 and R6, and allow PR-1\"",
+        "applied": "2026-11-25T21:01Z"
       }
     ]
   }

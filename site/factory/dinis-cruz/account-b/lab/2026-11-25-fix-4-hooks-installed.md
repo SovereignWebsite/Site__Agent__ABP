@@ -30,3 +30,24 @@ b.abp, 25 Nov 2026, at Dinis Cruz's word in b.abp's session ("Yes please", to in
 **The first live log** (b.abp's session, `~/.abp/log/`, length and hash only): the first two calls were logged as unidentified (the hook still had the greedy label match until the fix); from 20:56:24 every call names `b-abp-sovereignwebsite`; two prompts logged (72 and 469 characters, no text); `ReadNotifications` logged as outside every grant (R2), now proposed as relaxation PR-1 for Dinis.
 
 **Next, each at Dinis's word:** the same in each agent's home (each by its keeper), then breakers on, starting with R3 (connectors).
+
+## Breakers on: R3 and R6 (tamper), and PR-1 allowed
+
+Dinis Cruz in b.abp's session, 25 Nov 2026: "Yes, switch on R3 and R6, and allow PR-1".
+
+- **R3 on:** every MCP tool not in a grant is blocked, connectors and session tools alike. b-abp's grant keeps its session messaging, session reads, create and archive, the documentation and GitHub's get and list tools.
+- **R6 on, for tampering only.** The kit's breakers cover a whole rule; R6 whole would block every write outside a grant, unidentified sessions included. b.security and b.abp proposed it for the protected paths, so the hook gains one small option: a breaker may name `kinds`, and only denials of those kinds block. R6 has `"kinds": ["tamper"]`: writes to `.claude/**`, `abp/*`, `HOLD.md`, `.git/config` and the two signing scripts by anyone but their owner. Other R6 writes stay log-only. (Sent to the kit's keepers as a proposal.)
+- **PR-1 applied:** `ReadNotifications` is in `tools.builtin_allowed`.
+
+**Tested** in a copy first (the hook reads the live policy, so a broken file would have locked b.abp's own writes), then live:
+
+| Call | Result |
+|---|---|
+| Gmail send_message, Claude Docs guide | blocked, R3 |
+| create_trigger | blocked, R4 (through R3's breaker) |
+| claude-code-remote send_message, GitHub get_file_contents, ReadNotifications | pass |
+| a-abp writes .claude/settings.json, rm .claude/settings.json, writes tools/sign.sh | blocked, R6 tamper |
+| an unidentified session writes abp/policies.json | blocked, R6 tamper |
+| anyone writes .git/config | blocked, R6 tamper |
+| a-abp writes in b.abp's area; an unidentified session writes site/x.html | pass, logged (R6 write, log-only) |
+| **Live, in b.abp's own session:** mcp__Claude_Docs__guide | **blocked by the hook before the call** |

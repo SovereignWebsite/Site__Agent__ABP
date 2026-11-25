@@ -1,6 +1,6 @@
 ---
 title: "ABP: a-abp-sovereignwebsite"
-policy: abp/policies.json v0.2.0 (sha256:c58c48c220aa67d2)
+policy: abp/policies.json v0.2.0 (sha256:727555c38dd348a8)
 generated: by node abp/tools.mjs build; never edited by hand
 ---
 # ABP: a-abp-sovereignwebsite
