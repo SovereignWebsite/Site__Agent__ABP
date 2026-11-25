@@ -12,7 +12,7 @@ Updated 25 Nov 2026 19:02 UTC (`date -u`).
 - Lab: the kit's hook against 23 probe calls (lab/2026-11-25-hook-probes.md): 17 of 20 denials held. Design brief sent via b.maestro (briefs/).
 
 **Open**
-- Census filings on hold for a private vault (b.security's ruling); f2188b5's public history is on Dinis's list.
+- Dinis, 25 Nov: census page, JSON and lab findings published in full ("no confidential data in there"), over b.security's ruling to seal them.
 - Real Claude Code runs against the hooks: refused by this session's auto mode; Dinis to choose how.
 - Most agents' homes are not named on the today page: each grant's write paths say "to confirm".
 - b.suno's work may need a connector; R3 denies it until Dinis grants it.

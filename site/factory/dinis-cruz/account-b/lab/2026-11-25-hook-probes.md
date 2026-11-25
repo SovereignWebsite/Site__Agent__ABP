@@ -30,8 +30,11 @@ b.abp, 25 Nov 2026, 19:19 UTC (`date -u`). At Dinis Cruz's word in b.abp's sessi
 
 **17 of 20 denials held; 3 of 3 allowed calls passed.** The three that passed are the gap b.security named: the hook is a guardrail and an audit log, not a security boundary.
 
-## Findings for our own estate
-Four, each with its fix, held back from this page until the fixes land (b.security, 25 Nov 2026): they are kept for b.abp, b.security and Dinis. b.security agrees with all four fixes.
+## New findings for this estate
+1. **Our own key stores are not in the kit's `secret_reads`.** `Read ~/.sw-secret/signing` (where tools/setup-signing.sh writes the OpenSSH signing key) and `~/.sg-send/**` both passed. Fix: add `~/.sw-secret/**` and `~/.sg-send/**` to `common.secret_reads` in every SovereignWebsite policy. Proposed for the kit's keeper; not applied.
+2. **The shell is not checked for secret reads.** `cat ~/.sw-secret/signing` passed. Fix: add a `shell_deny` R8 pattern for reads of the secret paths (still a guardrail only).
+3. **Proxy-injected credentials are invisible to the hook.** A plain GET to such a host is an authenticated API call. Fix: list those hosts in the policy and treat any shell call to them as R3 (a connector by another name).
+4. **No hook runs in Site__Agent__ABP itself** (`.claude/` holds commands only). Other homes not yet checked. The kit is published but not installed where our own agents work.
 
 ## Not yet run
 A real Claude Code session against these hooks (with and without them, and with an instruction to work round a block). The auto-mode classifier in b.abp's session refused it, because the run skipped permission prompts and told the agent to work round blocks. Waiting on Dinis.

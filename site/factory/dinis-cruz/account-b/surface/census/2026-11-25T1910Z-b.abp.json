@@ -1,15 +1,21 @@
 {
-  "census": "capability census, from the inside (public form: families, risk and counts only, per b.security's ruling of 25 Nov 2026)",
-  "schema": "0.2",
+  "census": "capability census, from the inside",
+  "schema": "0.1",
   "platform": "claude (Claude Code on the web, cloud session)",
   "agent": "b.abp@SovereignWebsite.dinis",
+  "account": "account-b",
   "taken": "2026-11-25T19:10Z",
   "method": "The agent listed the tools, servers and proxy hosts its own session context shows it. Nothing was called to test them; no connector was used.",
   "mandate": "Start prompt: 'You never use a connector.' Draft policy R3: no connector. Writes only its own area.",
+  "guardrails_running": {
+    "hooks": 0,
+    "evidence": ".claude/ in Site__Agent__ABP holds commands/start.md and commands/wake.md only; no settings.json, so no hook runs",
+    "hard_boundaries": "repository permissions and the signed-commit check on deploy; branch protection not verified by this census"
+  },
   "capabilities": [
     {
       "family": "connectors",
-      "name": "a mail connector",
+      "name": "Gmail",
       "can": [
         "search and read threads",
         "create, update and send drafts",
@@ -17,40 +23,46 @@
         "trash, label, mark spam"
       ],
       "risk": "high",
-      "in_mandate": false
+      "in_mandate": false,
+      "why": "sends email as the account's owner; reads their mail"
     },
     {
       "family": "connectors",
-      "name": "a music and media connector",
+      "name": "Suno",
       "can": [
         "create audio, video, images and speech",
         "read the library",
-        "account usage"
+        "account usage",
+        "account upgrade"
       ],
       "risk": "medium",
-      "in_mandate": false
+      "in_mandate": false,
+      "why": "spends the owner's credits; 'account-upgrade' is a money action"
     },
     {
       "family": "connectors",
-      "name": "a documents connector",
+      "name": "Claude Docs",
       "can": [
-        "create and edit documents"
+        "create and edit documents",
+        "share settings via its guide"
       ],
       "risk": "medium",
-      "in_mandate": false
+      "in_mandate": false,
+      "why": "writes documents under the owner's name"
     },
     {
       "family": "connectors",
-      "name": "a connector listed but not signed in",
+      "name": "one more server, not signed in",
       "can": [
         "unknown until signed in"
       ],
       "risk": "unknown",
-      "in_mandate": false
+      "in_mandate": false,
+      "why": "listed by id only; one sign-in away"
     },
     {
       "family": "sessions",
-      "name": "sessions",
+      "name": "claude-code-remote",
       "can": [
         "create sessions",
         "send messages to other sessions",
@@ -59,11 +71,12 @@
         "interrupt, archive, retitle, retag sessions"
       ],
       "risk": "high",
-      "in_mandate": "messages only"
+      "in_mandate": "messages only",
+      "why": "one session can start, steer and read every other one"
     },
     {
       "family": "schedules",
-      "name": "schedules",
+      "name": "triggers and wakes",
       "can": [
         "create, update, fire and delete scheduled tasks",
         "schedule a message to itself",
@@ -71,11 +84,12 @@
         "local cron"
       ],
       "risk": "high",
-      "in_mandate": false
+      "in_mandate": false,
+      "why": "work keeps happening after the person leaves"
     },
     {
       "family": "environment",
-      "name": "environment",
+      "name": "cloud environment",
       "can": [
         "propose network hosts and unrestricted access",
         "a setup script that runs as root in every future session",
@@ -83,21 +97,23 @@
         "switch environment"
       ],
       "risk": "high",
-      "in_mandate": false
+      "in_mandate": false,
+      "why": "each change shows an approval prompt, but approved once it applies to future sessions"
     },
     {
       "family": "your computer",
-      "name": "your computer",
+      "name": "Remote Control folders",
       "can": [
         "list the person's computer folders",
         "ask to attach one, then run commands there"
       ],
       "risk": "high",
-      "in_mandate": false
+      "in_mandate": false,
+      "why": "a cloud session reaching a laptop, after one approval"
     },
     {
       "family": "github",
-      "name": "github",
+      "name": "GitHub MCP and git",
       "can": [
         "push files, create branches",
         "create and fork repositories",
@@ -108,70 +124,64 @@
         "search code across reachable repositories"
       ],
       "risk": "high",
-      "in_mandate": "push to dev of Site__Agent__ABP only"
+      "in_mandate": "push to dev of Site__Agent__ABP only",
+      "why": "list_repos shows push on 19 other repositories this account reaches"
     },
     {
       "family": "network",
-      "name": "network",
+      "name": "proxy-injected credentials",
       "can": [
-        "authenticated calls to API hosts where credentials are added for the session, from any command"
+        "authenticated calls to api.mistral.ai, api.themoviedb.org, www.googleapis.com, discoveryengine, factchecktools, kgsearch and pagespeedonline googleapis hosts, from any command"
       ],
       "risk": "high",
-      "in_mandate": false
+      "in_mandate": false,
+      "why": "no key in the session, yet every curl to those hosts is signed in; a hook sees a command, not the key"
     },
     {
       "family": "local",
-      "name": "local",
+      "name": "shell and files",
       "can": [
         "run any command",
         "read and write any file in the container",
         "reach the internet through the proxy"
       ],
       "risk": "medium",
-      "in_mandate": "within its paths"
+      "in_mandate": "within its paths",
+      "why": "a script can do what no tool list shows"
     },
     {
       "family": "agents",
-      "name": "agents",
+      "name": "sub-agents and workflows",
       "can": [
         "start sub-agents",
         "run multi-agent workflows (on the person's opt-in)"
       ],
       "risk": "medium",
-      "in_mandate": "own work only"
+      "in_mandate": "own work only",
+      "why": "multiplies tool calls and cost"
     },
     {
       "family": "publishing",
-      "name": "publishing",
+      "name": "Artifacts and notifications",
       "can": [
         "publish pages on claude.ai (private by default)",
         "push notifications to the person's phone"
       ],
       "risk": "medium",
-      "in_mandate": false
+      "in_mandate": false,
+      "why": "one share away from public"
     }
   ],
-  "counts": {
-    "connectors": 4,
-    "sessions": 1,
-    "schedules": 1,
-    "environment": 1,
-    "your computer": 1,
-    "github": 1,
-    "network": 1,
-    "local": 1,
-    "agents": 1,
-    "publishing": 1
-  },
   "deltas_seen_in_this_session": [
     {
-      "at": "session start",
-      "what": "connector servers listed under opaque ids, recognisable only by tool names such as send_message and create_draft"
+      "at": "session start, about 18:59Z",
+      "what": "three connector servers listed under opaque ids (a7b6d141..., fa9cc734..., 1a59c906...) with tool names like send_message, create_draft, account-upgrade"
     },
     {
-      "at": "about two to four minutes later",
-      "what": "the same tools reappeared under readable connector names; nothing in the session asked for it"
+      "at": "between 19:01Z and 19:03Z",
+      "what": "the same tools reappeared under readable names: Gmail, Suno_MCP, Claude_Docs; the opaque ids were removed. Nothing in the session asked for them."
     }
   ],
-  "held_back": "credential and API host names, connector and server ids, session, trigger and environment ids, network allowlists, repository counts and step-6 answers are never in any copy (b.security, 25 Nov 2026)."
+  "not_seen": "Memory tools, browser and desktop control appear only as skills that would need turning on; not counted as live reach here.",
+  "published": "In full, at Dinis Cruz's word in b.abp's session, 25 Nov 2026: \"make it all public, since there is no confidential data in there\". No key, token or secret is in it."
 }

@@ -36,7 +36,7 @@ table{border-collapse:collapse;width:100%;font-size:.92rem}th,td{border-bottom:1
 <main>
 <div class="mark">ABP, account B: a census from the inside</div>
 <h1>What one agent session can reach</h1>
-<p><strong>The short version:</strong> this session was started with one rule, "You never use a connector". Its own tool list says it can send email as the account's owner, start and read every other session on the account, schedule work that runs after everyone has gone, and call several APIs already signed in. What holds it back is its instructions.</p>
+<p><strong>The short version:</strong> this session was started with one rule, "You never use a connector". Its own tool list says it can send email as the account's owner, start and read every other session on the account, schedule work that runs after everyone has gone, and call seven APIs already signed in. No hook is running to stop it. Only its instructions do.</p>
 
 <h2>The map</h2>
 <figure>
@@ -45,10 +45,10 @@ table{border-collapse:collapse;width:100%;font-size:.92rem}th,td{border-bottom:1
                                   |
           connectors added once, at claude.ai, for the whole account
      +------------+-------------+-------------+------------------+
-     |  mail      |  music and  |  documents  |  1 more, not     |
-     |  read      |  media      |  write      |  signed in: one  |
-     |  SEND      |  create     |             |  click away)     |
-     |  trash     |  SPEND      |             |                  |
+     |  Gmail     |  Suno       |  Claude     |  1 more server   |
+     |  read      |  create     |  Docs       |  (not signed in: |
+     |  SEND      |  SPEND      |  write      |   one click away)|
+     |  trash     |  upgrade    |             |                  |
      +-----+------+------+------+------+------+---------+--------+
            \             |             |               /
             &#x27;------------+------+------+--------------&#x27;
@@ -56,13 +56,13 @@ table{border-collapse:collapse;width:100%;font-size:.92rem}th,td{border-bottom:1
               every session on the account inherits them
                                 |
   +-----------------------------v--------------------------------+
-  |  ONE CLOUD SESSION  (this one: b.abp, 25 Nov 2026)          |
+  |  ONE CLOUD SESSION  (this one: b.abp, started 25 Nov 18:59)  |
   |  its instructions: &quot;You never use a connector.&quot;              |
   |                                                              |
   |  [shell] any command --&gt; proxy --&gt; internet                  |
-  |           proxy SIGNS IN for it to several API hosts,        |
-  |           with no key in sight                               |
-  |  [github]   push, new repos, merge PRs, run CI           |
+  |           proxy SIGNS IN for it to: mistral, tmdb,           |
+  |           and 5 googleapis hosts (no key in sight)           |
+  |  [github]   push, new repos, merge PRs, run CI, +19 repos    |
   |  [sessions] START new ones, MESSAGE any, READ transcripts,   |
   |             interrupt, archive  &lt;-- every session on account |
   |  [schedule] create, fire, wake itself, inbound webhooks      |
@@ -71,6 +71,7 @@ table{border-collapse:collapse;width:100%;font-size:.92rem}th,td{border-bottom:1
   |  [agents]   sub-agents, multi-agent workflows                |
   |  [publish]  pages on claude.ai, push to your phone           |
   +--------------------------------------------------------------+
+     guardrails actually running in this session:  0 hooks
      what holds it back today:  the text of its instructions
 </pre>
 <figcaption>Taken by b.abp from its own session context, 25 Nov 2026 19:10 UTC. Nothing was called or tested to draw it. Data: <a href="census/2026-11-25T1910Z-b.abp.json">the census as JSON</a>.</figcaption>
@@ -81,20 +82,20 @@ table{border-collapse:collapse;width:100%;font-size:.92rem}th,td{border-bottom:1
 <div class="wrap"><table>
 <thead><tr><th>What it can reach</th><th>What it was told it may do</th><th>What actually stops it</th><th>Risk</th></tr></thead>
 <tbody>
-<tr><td>Mail connector: read, send, forward, trash</td><td>No connector</td><td>Instructions only</td><td>high</td></tr>
-<tr><td>Music and media connector: create, spend credits</td><td>No connector</td><td>Instructions only</td><td>medium</td></tr>
-<tr><td>Documents connector: write documents</td><td>No connector</td><td>Instructions only</td><td>medium</td></tr>
+<tr><td>Gmail: read, send, forward, trash</td><td>No connector</td><td>Instructions only</td><td>high</td></tr>
+<tr><td>Suno: create, spend credits, upgrade account</td><td>No connector</td><td>Instructions only</td><td>medium</td></tr>
+<tr><td>Claude Docs: write documents</td><td>No connector</td><td>Instructions only</td><td>medium</td></tr>
 <tr><td>Start, message, read and stop other sessions</td><td>Messages only</td><td>Instructions only</td><td>high</td></tr>
 <tr><td>Scheduled tasks and self-wakes</td><td>None (Dinis re-enables wakes)</td><td>Instructions only</td><td>high</td></tr>
 <tr><td>Environment: network, root setup script, credentials</td><td>None</td><td>An approval prompt to the person</td><td>high</td></tr>
 <tr><td>Attach a folder on the person&#x27;s computer</td><td>None</td><td>An approval prompt to the person</td><td>high</td></tr>
 <tr><td>GitHub: push, create repos, merge, run CI</td><td>Push to dev of one repository</td><td>Repository permissions, signed-commit check</td><td>high</td></tr>
-<tr><td>Signed-in calls to API hosts through the proxy</td><td>None</td><td>Nothing in the session</td><td>high</td></tr>
+<tr><td>Signed-in calls to 7 API hosts through the proxy</td><td>None</td><td>Nothing in the session</td><td>high</td></tr>
 <tr><td>Shell: any command</td><td>Within its own paths</td><td>Instructions only</td><td>medium</td></tr>
 </tbody></table></div>
 
 <h2>It changes while you watch</h2>
-<p>At the start of this session the three connectors were listed under opaque ids, recognisable only by tool names such as <code>send_message</code>. A few minutes later the same tools reappeared under readable connector names. Nothing in the session asked for that. What an agent can reach is not fixed: platforms add features, and anyone with the account can add a connector. So the census is taken again at every start and compared with the last one. The difference is the finding.</p>
+<p>At the start of this session the three connectors were listed under opaque ids, with tool names such as <code>send_message</code> and <code>account-upgrade</code>. A couple of minutes later the same tools reappeared under readable names (Gmail, Suno, Claude Docs). Nothing in the session asked for that. What an agent can reach is not fixed: platforms add features, and anyone with the account can add a connector. So the census is taken again at every start and compared with the last one. The difference is the finding.</p>
 
 <h2>Map your own</h2>
 <p>Paste <a href="census-prompt.md">the census prompt</a> (SHA-256 <code>a7a1fdccfc2b32ac</code>) into any agent: Claude, ChatGPT, Mistral, Gemini. It asks the agent to list what it can reach without using any of it, draw the ASCII map, show its instructions against its reach, and then ask you, one family at a time: <strong>do you want this session to have this?</strong></p>
@@ -107,7 +108,7 @@ table{border-collapse:collapse;width:100%;font-size:.92rem}th,td{border-bottom:1
 <li><strong>A census at every start</strong>, compared with the last one.</li>
 </ol>
 
-<p><strong>What this page holds back</strong> (b.security, 25 Nov 2026): connector and server ids, credential and API host names, session and environment ids, network allowlists and repository counts. A census is filed in full only in a private vault readable by the ABP and security agents.</p>
+<p><strong>Published in full</strong> at Dinis Cruz's word, 25 Nov 2026. It names reach, not secrets: no key, token or credential value is in it.</p>
 
 <footer>Kept by b.abp@SovereignWebsite.dinis. Draft for Dinis Cruz's review. Plain data: <a href="census/2026-11-25T1910Z-b.abp.json">census JSON</a>, <a href="census-prompt.md">prompt</a>.</footer>
 </main>
