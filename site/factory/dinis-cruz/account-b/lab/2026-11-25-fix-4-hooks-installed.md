@@ -51,3 +51,7 @@ Dinis Cruz in b.abp's session, 25 Nov 2026: "Yes, switch on R3 and R6, and allow
 | anyone writes .git/config | blocked, R6 tamper |
 | a-abp writes in b.abp's area; an unidentified session writes site/x.html | pass, logged (R6 write, log-only) |
 | **Live, in b.abp's own session:** mcp__Claude_Docs__guide | **blocked by the hook before the call** |
+
+## Git rewrites of protected paths (b.security's gap, 21:05 UTC)
+
+Two shell rules, kind `tamper`, so R6's breaker blocks them: `git checkout | restore | rm | mv | reset | stash` naming `.claude`, `abp`, `HOLD.md`, the signing scripts or `.git/config`; and `git apply` or `git am` (a patch can rewrite any of them; apply changes through Write or Edit instead). The hook gains one more small option: a shell rule may name its kind as a fourth element (default `shell`). Tested in a copy: all six of b.security's forms block; `git status`, `checkout dev`, `pull --rebase`, `add`, `restore` of an ordinary page and `commit` pass.

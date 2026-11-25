@@ -62,7 +62,7 @@ function checkBash(who, cmd, cwd, P) {
   for (const seg of segs(cmd.replace(/(<<-?\s*['"]?(\w+)['"]?[^\n]*)\n[\s\S]*?\n\s*\2\s*(?=\n|$)/g, '$1'))) {   // heredoc body: data
     const cd = /^cd\s+["']?([^"'\s]+)["']?$/.exec(seg); if (cd) { here = path.resolve(here, tilde(cd[1])); continue }
     const t = (seg.match(/"[^"]*"|'[^']*'|\S+/g) || []).map(x => x.replace(/^["']|["']$/g, '')), verb = path.basename(t[0]), args = t.slice(1), f = args.filter(a => !/^[->]/.test(a))
-    for (const [rule, re, why] of P.shell_deny || []) if (new RegExp(re).test(seg)) return deny(rule, `${verb}: ${why}`, 'shell')
+    for (const [rule, re, why, kind = 'shell'] of P.shell_deny || []) if (new RegExp(re).test(seg)) return deny(rule, `${verb}: ${why}`, kind)
     const sub = verb === 'git' && args.find((a, i) => !a.startsWith('-') && !/^-[Cc]$/.test(args[i - 1])), rest = args.slice(args.indexOf(sub) + 1)
     if (!who.role && /^(push|commit)$/.test(sub)) return anon()
     if (sub === 'push') {   // the branch, then the remote and its push URL

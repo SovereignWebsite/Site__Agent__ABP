@@ -210,9 +210,21 @@
       "R8",
       "<\\s*(~|\\$HOME|\\$\\{HOME\\}|/root|/home/[^/\\s]+)/\\.(sw-secret|sg-send|ssh)/",
       "never redirect a key store file into a command"
+    ],
+    [
+      "R6",
+      "^git\\s(.*\\s)?(checkout|restore|rm|mv|reset|stash)\\s[^;|&]*(\\.claude|abp/|abp(\\s|$)|HOLD\\.md|tools/sign\\.sh|tools/setup-signing\\.sh|\\.git/config)",
+      "git must not rewrite a protected path (the hooks, the policy, the signing scripts)",
+      "tamper"
+    ],
+    [
+      "R6",
+      "^git\\s(.*\\s)?(apply|am)(\\s|$)",
+      "a patch can rewrite a protected path; apply it through Write or Edit instead",
+      "tamper"
     ]
   ],
-  "shell_deny_about": "[rule, regex, reason], tested on each shell segment (leading VAR=, sudo, env removed); the hook also checks the push branch, commit names, sends and protected writes",
+  "shell_deny_about": "[rule, regex, reason], tested on each shell segment (leading VAR=, sudo, env removed); the hook also checks the push branch, commit names, sends and protected writes A fourth element names the kind of denial (default shell), so a breaker limited to kinds can cover it.",
   "common": {
     "writes": [
       "abp/runs/{role}/**"
