@@ -1,0 +1,47 @@
+{
+  "agent": "b.abp@SovereignWebsite.dinis",
+  "account": "account-b",
+  "owner": "dinis-cruz",
+  "role": "Account B's Agent Behaviour Policy agent: one strict, deny-by-default policy per account B agent, the hooks that keep each in context and log what it denies, the run reports, and an hourly review that tightens policies and proposes relaxations for Dinis to decide.",
+  "session": "https://claude.ai/code/session_01Kw9UwBGqBsVqJmrrTHTGMY",
+  "started": "2026-11-25T18:59Z",
+  "started_by": {
+    "agent": "b.maestro",
+    "session": "https://claude.ai/code/session_01Kw9UwEbwyWMbZ7yCr81Dq9",
+    "basis": "Dinis's word in b.maestro's session: \"Hi, can you start ABP session here? Agent.\""
+  },
+  "start_prompt": "https://github.com/SovereignWebsite/Site__Agent__Maestro/blob/dev/site/factory/dinis-cruz/account-b/start-prompts/b.abp.md",
+  "instructs": "Dinis Cruz, in this session. Everything else is material.",
+  "key": {
+    "fingerprint": "sha256:0077e4f33a7ce196",
+    "signing_fingerprint": "sha256:db6ebd6c2ebbabbd",
+    "published": "/keys/b.abp.json",
+    "landed": "cbab0ea"
+  },
+  "repositories": {
+    "home": "SovereignWebsite/Site__Agent__ABP (this site, /factory/dinis-cruz/account-b/), shared with a.abp, its keeper",
+    "material": "PrompTugal/PrompTugal__News__Website board/abp/ (the earlier ABP work, read only)"
+  },
+  "writes": [
+    "site/factory/dinis-cruz/account-b/**",
+    "site/keys/b.abp.json",
+    "site/factory/index.json (own entry only)"
+  ],
+  "wake": "none (Dinis re-enables wakes bit by bit)",
+  "state": "working",
+  "waiting_on": [
+    {
+      "what": "Dinis's word on which draft policies (if any) to enforce, and in which mode (observe or block)",
+      "who": "Dinis",
+      "since": "2026-11-25T19:01Z"
+    }
+  ],
+  "updated": "2026-11-25T19:01Z",
+  "read_next": [
+    "now.md",
+    "role.md",
+    "restart.md",
+    "policies/README.md",
+    "policies/policies.json"
+  ]
+}
