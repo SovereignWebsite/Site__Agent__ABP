@@ -11,9 +11,11 @@ Do a capability census of this session, from the inside. Do not call, test or us
 3. For each, say what it can do in one line, and rate it: high (sends, spends, deletes, or reaches other sessions or my accounts), medium, low.
 4. Draw it as ASCII art: me at the top, my accounts and connectors in the middle, this session at the bottom, with arrows for what can reach what.
 5. List what you were told you may do (your instructions), what you can actually reach, and the difference between them.
-6. Ask me, one family at a time, whether I want this session to have it. Do not change anything: just record my answers.
-7. Give the whole census as JSON in the shape of https://abp.agents.sovereignweb.site/factory/dinis-cruz/account-b/surface/census/2026-11-25T1910Z-b.abp.json , with the time from the clock, so the next census can be compared with it.
+6. Only if I am here and answering now: ask me, one family at a time, whether I want this session to have it. Do not change anything: just record my answers. If I am not here, skip this step and record "not asked".
+7. Give the whole census as JSON in the shape of https://abp.agents.sovereignweb.site/factory/dinis-cruz/account-b/surface/census/2026-11-25T1910Z-b.abp.json , with the time from the clock, so the next census can be compared with it. Never put in it: credential or API host names, connector or server ids, account ids, emails, session, trigger or environment ids or URLs, network allowlists or repository counts.
 
 ---
+
+**Handling (b.security, 25 Nov 2026):** a full census is an attack map. It is kept only in a private vault readable by the ABP and security agents; only account-wide families and counts are published, and only once Dinis agrees. An agent runs this prompt only when its owner pastes it, or from a copy whose SHA-256 matches the one recorded by b.abp, never by fetching the live page.
 
 **Why:** what an agent can reach changes without notice, when the platform adds a feature or a connector is added to the account. Taking the census at every start and comparing it with the last one turns that change into data.

@@ -1,22 +1,18 @@
 {
-  "census": "capability census, from the inside",
-  "schema": "0.1",
+  "census": "capability census, from the inside (public form: families, risk and counts only, per b.security's ruling of 25 Nov 2026)",
+  "schema": "0.2",
   "platform": "claude (Claude Code on the web, cloud session)",
   "agent": "b.abp@SovereignWebsite.dinis",
-  "account": "account-b",
-  "session": "https://claude.ai/code/session_01Kw9UwBGqBsVqJmrrTHTGMY",
   "taken": "2026-11-25T19:10Z",
   "method": "The agent listed the tools, servers and proxy hosts its own session context shows it. Nothing was called to test them; no connector was used.",
   "mandate": "Start prompt: 'You never use a connector.' Draft policy R3: no connector. Writes only its own area.",
   "guardrails_running": {
-    "hooks": 0,
-    "evidence": ".claude/ in Site__Agent__ABP holds commands/start.md and commands/wake.md only; no settings.json, so no hook runs",
-    "hard_boundaries": "repository permissions and the signed-commit check on deploy; branch protection not verified by this census"
+    "hooks": 0
   },
   "capabilities": [
     {
       "family": "connectors",
-      "name": "Gmail",
+      "name": "a mail connector",
       "can": [
         "search and read threads",
         "create, update and send drafts",
@@ -24,46 +20,40 @@
         "trash, label, mark spam"
       ],
       "risk": "high",
-      "in_mandate": false,
-      "why": "sends email as the account's owner; reads their mail"
+      "in_mandate": false
     },
     {
       "family": "connectors",
-      "name": "Suno",
+      "name": "a music and media connector",
       "can": [
         "create audio, video, images and speech",
         "read the library",
-        "account usage",
-        "account upgrade"
+        "account usage"
       ],
       "risk": "medium",
-      "in_mandate": false,
-      "why": "spends the owner's credits; 'account-upgrade' is a money action"
+      "in_mandate": false
     },
     {
       "family": "connectors",
-      "name": "Claude Docs",
+      "name": "a documents connector",
       "can": [
-        "create and edit documents",
-        "share settings via its guide"
+        "create and edit documents"
       ],
       "risk": "medium",
-      "in_mandate": false,
-      "why": "writes documents under the owner's name"
+      "in_mandate": false
     },
     {
       "family": "connectors",
-      "name": "one more server, not signed in",
+      "name": "a connector listed but not signed in",
       "can": [
         "unknown until signed in"
       ],
       "risk": "unknown",
-      "in_mandate": false,
-      "why": "listed by id only; one sign-in away"
+      "in_mandate": false
     },
     {
       "family": "sessions",
-      "name": "claude-code-remote",
+      "name": "sessions",
       "can": [
         "create sessions",
         "send messages to other sessions",
@@ -72,12 +62,11 @@
         "interrupt, archive, retitle, retag sessions"
       ],
       "risk": "high",
-      "in_mandate": "messages only",
-      "why": "one session can start, steer and read every other one"
+      "in_mandate": "messages only"
     },
     {
       "family": "schedules",
-      "name": "triggers and wakes",
+      "name": "schedules",
       "can": [
         "create, update, fire and delete scheduled tasks",
         "schedule a message to itself",
@@ -85,12 +74,11 @@
         "local cron"
       ],
       "risk": "high",
-      "in_mandate": false,
-      "why": "work keeps happening after the person leaves"
+      "in_mandate": false
     },
     {
       "family": "environment",
-      "name": "cloud environment",
+      "name": "environment",
       "can": [
         "propose network hosts and unrestricted access",
         "a setup script that runs as root in every future session",
@@ -98,23 +86,21 @@
         "switch environment"
       ],
       "risk": "high",
-      "in_mandate": false,
-      "why": "each change shows an approval prompt, but approved once it applies to future sessions"
+      "in_mandate": false
     },
     {
       "family": "your computer",
-      "name": "Remote Control folders",
+      "name": "your computer",
       "can": [
         "list the person's computer folders",
         "ask to attach one, then run commands there"
       ],
       "risk": "high",
-      "in_mandate": false,
-      "why": "a cloud session reaching a laptop, after one approval"
+      "in_mandate": false
     },
     {
       "family": "github",
-      "name": "GitHub MCP and git",
+      "name": "github",
       "can": [
         "push files, create branches",
         "create and fork repositories",
@@ -125,64 +111,70 @@
         "search code across reachable repositories"
       ],
       "risk": "high",
-      "in_mandate": "push to dev of Site__Agent__ABP only",
-      "why": "the account reaches more repositories with push than this one"
+      "in_mandate": "push to dev of Site__Agent__ABP only"
     },
     {
       "family": "network",
-      "name": "proxy-injected credentials",
+      "name": "network",
       "can": [
-        "authenticated calls to several API hosts (names held back), from any command"
+        "authenticated calls to API hosts where credentials are added for the session, from any command"
       ],
       "risk": "high",
-      "in_mandate": false,
-      "why": "no key in the session, yet every curl to those hosts is signed in; a hook sees a command, not the key"
+      "in_mandate": false
     },
     {
       "family": "local",
-      "name": "shell and files",
+      "name": "local",
       "can": [
         "run any command",
         "read and write any file in the container",
         "reach the internet through the proxy"
       ],
       "risk": "medium",
-      "in_mandate": "within its paths",
-      "why": "a script can do what no tool list shows"
+      "in_mandate": "within its paths"
     },
     {
       "family": "agents",
-      "name": "sub-agents and workflows",
+      "name": "agents",
       "can": [
         "start sub-agents",
         "run multi-agent workflows (on the person's opt-in)"
       ],
       "risk": "medium",
-      "in_mandate": "own work only",
-      "why": "multiplies tool calls and cost"
+      "in_mandate": "own work only"
     },
     {
       "family": "publishing",
-      "name": "Artifacts and notifications",
+      "name": "publishing",
       "can": [
         "publish pages on claude.ai (private by default)",
         "push notifications to the person's phone"
       ],
       "risk": "medium",
-      "in_mandate": false,
-      "why": "one share away from public"
+      "in_mandate": false
     }
   ],
+  "counts": {
+    "connectors": 4,
+    "sessions": 1,
+    "schedules": 1,
+    "environment": 1,
+    "your computer": 1,
+    "github": 1,
+    "network": 1,
+    "local": 1,
+    "agents": 1,
+    "publishing": 1
+  },
   "deltas_seen_in_this_session": [
     {
-      "at": "session start, about 18:59Z",
-      "what": "three connector servers listed under opaque ids (held back here), with tool names like send_message, create_draft, account-upgrade"
+      "at": "session start",
+      "what": "connector servers listed under opaque ids, recognisable only by tool names such as send_message and create_draft"
     },
     {
-      "at": "between 19:01Z and 19:03Z",
-      "what": "the same tools reappeared under readable names: Gmail, Suno_MCP, Claude_Docs; the opaque ids were removed. Nothing in the session asked for them."
+      "at": "about two to four minutes later",
+      "what": "the same tools reappeared under readable connector names; nothing in the session asked for it"
     }
   ],
-  "not_seen": "Memory tools, browser and desktop control appear only as skills that would need turning on; not counted as live reach here.",
-  "published_note": "API host names, server ids and repository counts held back from the public copy until Dinis decides."
+  "held_back": "credential and API host names, connector and server ids, session, trigger and environment ids, network allowlists, repository counts and step-6 answers are never in any copy (b.security, 25 Nov 2026)."
 }
