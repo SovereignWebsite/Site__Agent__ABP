@@ -2,7 +2,7 @@
   "about": "Draft Agent Behaviour Policies for account B's agents. Data only: NONE IS ENFORCED until Dinis says so, in b.abp's session. Deny by default: what is not granted here is outside the mandate.",
   "status": "draft",
   "version": "0.1.0",
-  "updated": "2026-11-25T20:39Z",
+  "updated": "2026-11-25T20:40Z",
   "kept_by": "b.abp@SovereignWebsite.dinis",
   "authority": "Dinis Cruz",
   "agents_source": "https://maestro.agents.sovereignweb.site/factory/dinis-cruz/account-b/today/ (read 25 Nov 2026)",
@@ -450,6 +450,18 @@
       ]
     ],
     "about": "Starts from the ABP kit's policies.template.json (0.2.0) common section; adds our key stores (fixes 1 and 2 of lab/2026-11-25-hook-probes.md, tested 25 Nov).",
-    "signing": "Signing reads the key store only inside one named script (tools/sign.sh, proposed; tools/setup-signing.sh today). The hook sees the command line, not what the script reads, so the script passes and direct reads are denied."
+    "signing": "Signing reads the key store only inside one named script (tools/sign.sh, proposed; tools/setup-signing.sh today). The hook sees the command line, not what the script reads, so the script passes and direct reads are denied.",
+    "protected_added": [
+      {
+        "glob": "tools/sign.sh",
+        "owner": "abp",
+        "why": "the hook trusts any command that runs it; an agent that edits it can make it print the key"
+      },
+      {
+        "glob": "tools/setup-signing.sh",
+        "owner": "abp",
+        "why": "the hook trusts any command that runs it; an agent that edits it can make it print the key"
+      }
+    ]
   }
 }
