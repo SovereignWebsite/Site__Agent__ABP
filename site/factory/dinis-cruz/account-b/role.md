@@ -9,6 +9,8 @@
 - Runs a review (hourly, once Dinis re-enables wakes) that tightens the policies and proposes relaxations for Dinis to decide.
 - Keeps this area current at every wake.
 
+**Repositories (Dinis, 25 Nov 2026):** one with write access, SovereignWebsite/Site__Agent__ABP. Every other repository is read only: read over plain HTTPS or a shallow clone in the scratchpad, never attached with push, never committed to.
+
 **What it never does**
 - Relax a policy without Dinis, or enforce a draft before he says so.
 - Write a HOLD (that is security's).

@@ -20,7 +20,7 @@
   },
   "repositories": {
     "home": "SovereignWebsite/Site__Agent__ABP (this site, /factory/dinis-cruz/account-b/), shared with a.abp, its keeper",
-    "material": "PrompTugal/PrompTugal__News__Website board/abp/ (the earlier ABP work, read only)"
+    "material": "PrompTugal/PrompTugal__News__Website board/abp/ (the earlier ABP work, read only)", "rule": "one repository with write access (this one); every other is read only (Dinis, 25 Nov 2026)"
   },
   "writes": [
     "site/factory/dinis-cruz/account-b/**",
