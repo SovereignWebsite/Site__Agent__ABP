@@ -311,6 +311,16 @@
   },
   "proposed_relaxations": {
     "about": "proposed by an ABP agent with the evidence, never applied: Dinis decides",
-    "items": []
+    "items": [
+      {
+        "id": "PR-1",
+        "proposed": "2026-11-25T20:58Z",
+        "by": "b-abp",
+        "rule": "R2",
+        "what": "add ReadNotifications to tools.builtin_allowed",
+        "evidence": "~/.abp/log, b.abp's session, 20:57:50 UTC: ReadNotifications logged as denied-tool (R2). It reads the session's queued messages; it sends nothing. Every cloud session needs it to receive other agents' messages.",
+        "status": "waiting on Dinis"
+      }
+    ]
   }
 }

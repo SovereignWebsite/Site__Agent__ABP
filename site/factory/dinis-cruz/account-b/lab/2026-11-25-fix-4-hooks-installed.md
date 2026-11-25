@@ -25,6 +25,8 @@ b.abp, 25 Nov 2026, at Dinis Cruz's word in b.abp's session ("Yes please", to in
 | Write .claude/settings.json (b-abp owns it) | allow |
 | Read with the policy missing | passes (fail closed lets reads through) |
 
-**When it takes effect:** Claude Code reads hooks when a session starts, so from the next session opened on this repository; b.abp's current session started without them.
+**When it took effect: at once.** Claude Code picked the hooks up mid-session, the moment `.claude/settings.json` was written (b.abp's own session, first logged call 20:55:50 UTC). The same is true the other way: an agent that edits or deletes that file switches its own hooks off mid-session. That is why `.claude/**` is protected, and why R6's breaker for it should be the first one on.
+
+**The first live log** (b.abp's session, `~/.abp/log/`, length and hash only): the first two calls were logged as unidentified (the hook still had the greedy label match until the fix); from 20:56:24 every call names `b-abp-sovereignwebsite`; two prompts logged (72 and 469 characters, no text); `ReadNotifications` logged as outside every grant (R2), now proposed as relaxation PR-1 for Dinis.
 
 **Next, each at Dinis's word:** the same in each agent's home (each by its keeper), then breakers on, starting with R3 (connectors).
