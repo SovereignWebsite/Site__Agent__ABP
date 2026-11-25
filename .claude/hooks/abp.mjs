@@ -24,7 +24,10 @@ export function whoAmI(P) {
 }
 // A dotted name without its own entry is a worker: its base role's paths; pushes work/<name>
 export function grantOf(who, P) {
-  const R = P.roles || {}, own = R[who.role], base = who.role?.includes('.') && R[who.role.split('.')[0]], s = own || (base ? { writes: base.writes } : {})
+  // Naming model (25 Nov 2026): '<account id>.<role>[.<speciality>]', the account id a platform code and number (cl-1, mi-2):
+  // then the role is the first two segments; an older id's role is its first segment. A worker is anything past the role.
+  const R = P.roles || {}, own = R[who.role], seg = who.role?.split('.') || [], cut = /^[a-z]+-[0-9]+$/.test(seg[0]) ? 2 : 1
+  const base = seg.length > cut && R[seg.slice(0, cut).join('.')], s = own || (base ? { writes: base.writes } : {})
   return { worker: !own && !!base, writes: [...P.common.writes, ...(s.writes || [])], send: [...P.common.send_hosts, ...(s.send_hosts || [])], connectors: s.connectors || [], subagents: !!s.subagents, notify_owner: !!s.notify_owner, push_remotes: s.push_remotes || [] }
 }
 const reC = {}, fill = (g, role) => tilde(g.replace(/\{role\}/g, role || '__none__'))

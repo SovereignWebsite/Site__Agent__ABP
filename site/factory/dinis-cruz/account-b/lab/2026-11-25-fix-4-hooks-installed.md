@@ -55,3 +55,9 @@ Dinis Cruz in b.abp's session, 25 Nov 2026: "Yes, switch on R3 and R6, and allow
 ## Git rewrites of protected paths (b.security's gap, 21:05 UTC)
 
 Two shell rules, kind `tamper`, so R6's breaker blocks them: `git checkout | restore | rm | mv | reset | stash` naming `.claude`, `abp`, `HOLD.md`, the signing scripts or `.git/config`; and `git apply` or `git am` (a patch can rewrite any of them; apply changes through Write or Edit instead). The hook gains one more small option: a shell rule may name its kind as a fourth element (default `shell`). Tested in a copy: all six of b.security's forms block; `git status`, `checkout dev`, `pull --rebase`, `add`, `restore` of an ordinary page and `commit` pass.
+
+## Naming model step 0: the hook reads both id forms
+
+Asked by a.maestro through b.maestro (material); the hook parsing is step 0 of Dinis's naming model (Site__Agent__Maestro notes/2026-11-25-naming-model.md) and in b.abp's start prompt. In `grantOf`, when the first dot-segment is an account id (`^[a-z]+-[0-9]+$`: cl-1, mi-2, gpt-3, gem-4), the role is the first two segments and anything after is a worker; otherwise, as before, the role is the first segment. Tested: `maestro.x` is a worker of `maestro`; `cl-1.maestro` is its own role; `cl-1.maestro.router` and `cl-1.aws.iam` are workers of `cl-1.maestro` and `cl-1.aws`; `b-abp` unchanged.
+
+**One catch for the renames:** `tools/setup-signing.sh` turns the dots of a name into hyphens for the key label (`cl-2.abp` becomes `cl-2-abp-sovereignwebsite`), so a role read from a key label loses the split. Until the label keeps the dots, a renamed agent sets `ABP_ROLE` or its policy entry is keyed by the hyphenated form.
