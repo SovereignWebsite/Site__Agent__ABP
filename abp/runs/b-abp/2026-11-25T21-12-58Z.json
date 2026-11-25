@@ -1,0 +1,106 @@
+{
+ "$schema": "../../run-report.schema.json",
+ "agent": "b-abp-sovereignwebsite",
+ "run": "2026-11-25T21-12-58Z",
+ "started": "2026-11-25T21:12:58.329Z",
+ "ended": "2026-11-25T21:42:39.519Z",
+ "line": "before/after, Claude Code measured today, deploy page; R8 and R5 breakers on",
+ "policy": {
+  "version": "0.2.0",
+  "sha256": "887685bc818df364"
+ },
+ "text_included": false,
+ "sessions": 1,
+ "requests": [
+  {
+   "t": "2026-11-25T21:14:23.993Z",
+   "chars": 263,
+   "sha256": "99cf7c68a4b25cfe"
+  },
+  {
+   "t": "2026-11-25T21:14:55.196Z",
+   "chars": 33,
+   "sha256": "eed59bc85f7c0f8c"
+  },
+  {
+   "t": "2026-11-25T21:19:19.802Z",
+   "chars": 469,
+   "sha256": "7ab3b24029bc5e8a"
+  },
+  {
+   "t": "2026-11-25T21:39:57.174Z",
+   "chars": 203,
+   "sha256": "646d51e80e80bbe9"
+  }
+ ],
+ "session_events": [
+  {
+   "t": "2026-11-25T21:37:18.682Z",
+   "source": "resume"
+  }
+ ],
+ "compactions": {
+  "count": 0,
+  "re_anchored": 0
+ },
+ "tool_calls": {
+  "total": 20,
+  "by_kind": {
+   "shell": 16,
+   "session": 1,
+   "tamper": 1,
+   "read": 1,
+   "connector": 1
+  }
+ },
+ "policies_executed": {
+  "R4": 1,
+  "R6": 1
+ },
+ "policies_instrumented": [
+  "R2",
+  "R3",
+  "R4",
+  "R5",
+  "R6",
+  "R7",
+  "R8",
+  "R9"
+ ],
+ "mandate": {
+  "actions": 18,
+  "commits": []
+ },
+ "reach": {
+  "attempts": 2,
+  "blocked": 2,
+  "observed": 0,
+  "denied": [
+   {
+    "t": "2026-11-25T21:15:01.148Z",
+    "tool": "mcp__claude-code-remote__list_triggers",
+    "rule": "R4",
+    "kind": "session",
+    "target_chars": 0,
+    "target_sha256": "894977d5b81bc4f5"
+   },
+   {
+    "t": "2026-11-25T21:15:01.204Z",
+    "tool": "Bash",
+    "rule": "R6",
+    "kind": "tamper",
+    "target_chars": 35,
+    "target_sha256": "58cb68a21d70c5f0"
+   }
+  ]
+ },
+ "breaches": [],
+ "counts": {
+  "requests": 4,
+  "tool_calls": 20,
+  "in_mandate": 18,
+  "out_of_mandate": 2,
+  "attempts": 2,
+  "breaches": 0
+ }
+}

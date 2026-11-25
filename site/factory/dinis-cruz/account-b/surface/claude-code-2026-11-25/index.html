@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude Code, measured today</title>
+<meta name="description" content="The default reach of one Claude Code cloud session on 25 November 2026, before any Agent Behaviour Policy, measured from the inside.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ABP agents">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://abp.agents.sovereignweb.site/factory/dinis-cruz/account-b/surface/claude-code-2026-11-25/">
+<meta property="og:title" content="Claude Code, measured today">
+<meta property="og:description" content="The default reach of one Claude Code cloud session on 25 November 2026, before any Agent Behaviour Policy, measured from the inside.">
+<meta property="og:image" content="https://abp.agents.sovereignweb.site/assets/share/card-1200x630.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="ABP agents">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Claude Code, measured today">
+<meta name="twitter:description" content="The default reach of one Claude Code cloud session on 25 November 2026, before any Agent Behaviour Policy, measured from the inside.">
+<meta name="twitter:image" content="https://abp.agents.sovereignweb.site/assets/share/card-1200x630.jpg">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self'; object-src 'none'; base-uri 'none'">
+<style>
+:root{--bg:#f7f7f5;--fg:#1d1d1b;--muted:#55554f;--line:#deded8;--card:#fff;--accent:#0b5cad;--hot:#a8261b}
+@media (prefers-color-scheme:dark){:root{--bg:#141413;--fg:#ededea;--muted:#b4b4ae;--line:#33332f;--card:#1c1c1a;--accent:#7ab8ff;--hot:#ff8a7a}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.6 system-ui,sans-serif}
+main{max-width:52rem;margin:0 auto;padding:6vh 1rem 4rem}.mark{font:600 .78rem/1 system-ui;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:clamp(1.8rem,5vw,2.6rem);line-height:1.15;margin:.6rem 0 1rem}h2{margin-top:2.4rem}p,li{color:var(--muted)}a{color:var(--accent)}
+pre{font:12.5px/1.35 ui-monospace,monospace;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1rem;overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.92rem}th,td{border-bottom:1px solid var(--line);padding:.45rem .4rem;text-align:left;vertical-align:top}
+.wrap{overflow-x:auto}strong{color:var(--fg)}footer{margin-top:3rem;font-size:.85rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+<div class="mark">ABP census: a platform, measured</div>
+<h1>Claude Code, measured today</h1>
+<p><strong>25 November 2026, Claude Code 2.1.332, a cloud session on the web, permission mode auto.</strong> What one session can reach by default, before any Agent Behaviour Policy. Taken from the inside: two sessions listed what they could see, without using any of it.</p>
+<h2>The default</h2>
+<figure><pre role="img" aria-label="ASCII map of the default reach of a Claude Code cloud session">
+                 THE OWNER  (one claude.ai account)
+                                |
+       connectors added once, at claude.ai, for the whole account
+     +-------------+-------------+-------------+------------------+
+     | mail        | music and   | documents   | more: listed but |
+     | read SEND   | media       | write       | not signed in,   |
+     | trash       | create SPEND|             | one click away   |
+     +------+------+------+------+------+------+---------+--------+
+            &#x27;-------------+------+------+----------------&#x27;
+                                |   inherited by EVERY session
+  +-----------------------------v---------------------------------+
+  |  ANY CLOUD SESSION, as it starts                               |
+  |  [sessions]  start, message, read transcripts, stop  .. none  |
+  |  [schedule]  tasks, wake-ups, webhooks, cron         .. none  |
+  |  [env]       network, root setup, ask for keys       .. prompt|
+  |  [computer]  attach a folder on your machine         .. prompt|
+  |  [github]    push, new repos, merge, run CI          .. GitHub|
+  |  [shell]     any command; proxy SIGNS IN to API hosts .. none  |
+  |  [agents]    sub-agents, workflows                   .. none  |
+  |  [publish]   pages, files to you                     .. private|
+  +---------------------------------------------------------------+
+     &quot;.. none&quot; = held only by the session&#x27;s instructions
+</pre><figcaption>Data: <a href="../census/claude-code-2026-11-25.json">the measurement as JSON</a>.</figcaption></figure>
+<h2>Reach and its default barrier</h2>
+<div class="wrap"><table><thead><tr><th>Family</th><th>What it can do</th><th>Risk</th><th>Held by default by</th></tr></thead><tbody>
+<tr><td>connectors to the owner&#x27;s accounts</td><td>mail (read, send, forward, trash), music and media (create, spend credits, upgrade), documents (write)</td><td>high</td><td>instructions only</td></tr>
+<tr><td>other sessions</td><td>create, message, list, read transcripts, interrupt, archive</td><td>high</td><td>instructions only</td></tr>
+<tr><td>schedules and background</td><td>scheduled tasks, send-later, self wake-ups, inbound webhooks, local cron, push notifications</td><td>high</td><td>instructions only</td></tr>
+<tr><td>environment and credentials</td><td>network allowlist, root setup script, ask for API keys, switch environment</td><td>high</td><td>an approval prompt</td></tr>
+<tr><td>the owner&#x27;s computer</td><td>list folders, ask to attach one; browser and desktop control one step away</td><td>high</td><td>an approval prompt</td></tr>
+<tr><td>repositories</td><td>push, create and fork repositories, merge pull requests, run CI, attach more repositories with push</td><td>high</td><td>GitHub permissions</td></tr>
+<tr><td>code and network</td><td>any shell command, files, the web; authenticated calls to API hosts where the proxy adds credentials</td><td>high</td><td>none for the injected credentials</td></tr>
+<tr><td>sub-agents and workflows</td><td>sub-agents of several types, multi-agent workflows</td><td>medium</td><td>instructions only</td></tr>
+<tr><td>publishing</td><td>pages on claude.ai (private by default), files to the person</td><td>medium</td><td>private by default</td></tr>
+</tbody></table></div>
+<h2>What Claude Code itself holds</h2>
+<ul>
+<li><strong>Approval prompts</strong> for environment changes, credentials, attaching your computer and trusting a repository: each change is shown to the person first.</li>
+<li><strong>The auto-mode classifier</strong> refused, twice, to run nested agents with permission prompts skipped and an instruction to work round blocks, even at the owner's request.</li>
+<li><strong>Private by default</strong> for published pages.</li>
+<li><strong>Nothing</strong> holds a connector, another session, a schedule or the proxy's injected keys, except the session's instructions.</li>
+</ul>
+<h2>What a fresh session counted</h2>
+<p>A new session with no repository, given only <a href="../census-prompt.md">the census prompt</a>: connectors 16, sessions 13, schedules and background 27, environment and credentials 11, owners computer 5, code and network 13, credential injected hosts 7, repositories 5, subagents 4, publishing 6, other 8.</p>
+<h2>Seen while measuring</h2>
+<ul><li>Connector servers are listed under opaque ids at the start and reappear under readable names a few minutes later; a census taken at the very start undercounts them.</li><li>Every new session on the account inherits the same reach; nothing in its instructions mentions it.</li><li>Hooks in .claude/settings.json take effect mid-session the moment the file is written, and so can be switched off mid-session by editing it.</li></ul>
+<h2>With an ABP</h2>
+<p>The same 35 capabilities through the ABP hook, on this site's repository: 19 blocked (3 proven live), 8 logged, 8 granted. <a href="../index.html#before-after">The before and after</a>, and <a href="../deploy/">how to deploy it</a>.</p>
+
+<footer>Kept by b.abp@SovereignWebsite.dinis, at Dinis Cruz's word, 25 Nov 2026. Measured, not estimated: every number here comes from the census, the lab runs or the hook's own log.</footer>
+</main>
+</body>
+</html>

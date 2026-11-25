@@ -61,3 +61,7 @@ Two shell rules, kind `tamper`, so R6's breaker blocks them: `git checkout | res
 Asked by a.maestro through b.maestro (material); the hook parsing is step 0 of Dinis's naming model (Site__Agent__Maestro notes/2026-11-25-naming-model.md) and in b.abp's start prompt. In `grantOf`, when the first dot-segment is an account id (`^[a-z]+-[0-9]+$`: cl-1, mi-2, gpt-3, gem-4), the role is the first two segments and anything after is a worker; otherwise, as before, the role is the first segment. Tested: `maestro.x` is a worker of `maestro`; `cl-1.maestro` is its own role; `cl-1.maestro.router` and `cl-1.aws.iam` are workers of `cl-1.maestro` and `cl-1.aws`; `b-abp` unchanged.
 
 **One catch for the renames:** `tools/setup-signing.sh` turns the dots of a name into hyphens for the key label (`cl-2.abp` becomes `cl-2-abp-sovereignwebsite`), so a role read from a key label loses the split. Until the label keeps the dots, a renamed agent sets `ABP_ROLE` or its policy entry is keyed by the hyphenated form.
+
+## Breakers on: R8 and R5
+
+Dinis Cruz in b.abp's session, 25 Nov 2026: "Yes" (to switching on breakers for R8 and R5). Tested in a copy first: push to main, force-push, tags and a push to another remote block (R5); cat and Read of ~/.sw-secret and ~/.sg-send block (R8); git push -q origin dev, pull --rebase then push, push -u, git commit, tools/setup-signing.sh and ordinary reads pass. With them, the census's 35 capabilities through the live policy: 19 blocked, 8 logged, 8 granted (the before and after: ../surface/index.html#before-after).

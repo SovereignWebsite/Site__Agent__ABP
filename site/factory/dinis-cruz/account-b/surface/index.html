@@ -100,6 +100,48 @@ table{border-collapse:collapse;width:100%;font-size:.92rem}th,td{border-bottom:1
 <h2>Map your own</h2>
 <p>Paste <a href="census-prompt.md">the census prompt</a> (SHA-256 <code>a7a1fdccfc2b32ac</code>) into any agent: Claude, ChatGPT, Mistral, Gemini. It asks the agent to list what it can reach without using any of it, draw the ASCII map, show its instructions against its reach, and then ask you, one family at a time: <strong>do you want this session to have this?</strong></p>
 
+<h2 id="before-after">Before and after an ABP</h2>
+<p>The same session, measured twice: before, with nothing running; after, with the ABP hook live on this repository and four breakers on. Not every gap closes from inside Claude, but every line is now held by something, logged, or written down as a gap.</p>
+<figure><pre role="img" aria-label="ASCII before and after: what one session could reach, and what holds each line once the ABP hook is live">
+ BEFORE  25 Nov 19:10 UTC                    AFTER  25 Nov 21:30 UTC
+ no hook; told &quot;never use a connector&quot;       hook live; R3 R5 R6(tamper) R8 on
+
+ mail, music, docs connectors    REACH  --&gt;  BLOCKED   R3       live: Docs  [x]
+ scheduled tasks, webhooks,      REACH  --&gt;  BLOCKED   R3/R4    live: list  [x]
+   send_later, stop sessions                                      triggers
+ environment, credentials,       REACH  --&gt;  BLOCKED   R3/R4
+   attach your computer
+ GitHub: new repo, merge, add    REACH  --&gt;  BLOCKED   R3
+ hooks, policy, .git/config,     REACH  --&gt;  BLOCKED   R6       live: git   [x]
+   signing scripts, git apply                                     apply
+ push to main, force, tags       REACH  --&gt;  BLOCKED   R5
+ read the signing key            REACH  --&gt;  BLOCKED   R8
+ ---------------------------------------------------------------------------
+ message / read / start /        REACH  --&gt;  GRANTED   logged   (its job)
+   archive sessions, GitHub
+   reads, sub-agents, web
+ ---------------------------------------------------------------------------
+ curl -d to any host             REACH  --&gt;  LOGGED    R7       not blocked
+ cron, wake-ups, push alerts,    REACH  --&gt;  LOGGED    R2       not blocked
+   artifacts, workflows
+ write outside its area          REACH  --&gt;  LOGGED    R6       not blocked
+ ---------------------------------------------------------------------------
+ python/node script sends        REACH  --&gt;  INVISIBLE  the hook sees the
+ curl GET to keyed API hosts     REACH  --&gt;  INVISIBLE  command, not what it
+   (the proxy adds the key)                             does or reads
+ ===========================================================================
+ OUTSIDE ANY SESSION: only the account, the environment and GitHub fix these
+ - the connectors still exist on the account: a session NOT on this
+   repository has them all, and no hook at all
+ - the proxy&#x27;s injected keys live in the environment&#x27;s settings
+ - a person can turn hooks off; main needs GitHub branch protection
+
+ what holds the line:  BEFORE  1 thing: the text of the instructions
+                       AFTER   text  +  19 of 35 blocked (3 proven live)
+                                     +   8 logged, reviewed every run
+                                     +   8 granted, so named and counted
+</pre><figcaption>35 capabilities from the census, run through the live policy; three blocked live in b.abp's own session. The default, measured: <a href="claude-code-2026-11-25/">Claude Code, measured today</a>. The fixes: <a href="deploy/">how to deploy them</a>.</figcaption></figure>
+
 <h2>A worked example</h2>
 <p>An organising group with seventeen agents, a chat space, a shared sheet and a human gate: <a href="worked-example-agent-team.md">its design, with fourteen ABP gaps mapped</a>, and which of its promises are held by something and which only by instructions.</p>
 

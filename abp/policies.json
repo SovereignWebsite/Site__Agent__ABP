@@ -10,7 +10,7 @@
     "about": "an agent is ABP_ROLE, or the one sgit key label \"<role>-sovereignwebsite\" in ~/.sg-send/keys/*/metadata.json (made by tools/setup-signing.sh: b.abp's label is b-abp-sovereignwebsite); none or two: unidentified"
   },
   "mode": "observe",
-  "mode_note": "Observe (log-only) for everything except two breakers, at Dinis's word on 25 Nov 2026: R3 (connectors) and R6 for tampering with protected paths. Other rules log and allow.",
+  "mode_note": "Observe (log-only) except four breakers, at Dinis's word on 25 Nov 2026: R3 (connectors), R5 (pushes), R6 for tampering with protected paths, R8 (key reads). Other rules log and allow.",
   "logging": {
     "include_text": false,
     "about": "false: prompts and tool targets are logged and reported as length and a keyed hash only. true (the owner's opt-in; never for a public repository): the hook also logs redacted text, and a run report carries it only with --include-text."
@@ -90,6 +90,18 @@
         "since": "2026-11-25T21:01Z",
         "by": "Dinis Cruz in b.abp's session, 25 Nov 2026: \"Yes, switch on R3 and R6, and allow PR-1\"",
         "why": "editing .claude/, abp/, the signing scripts or .git/config switches off or subverts the barrier itself, mid-session; other R6 writes stay log-only"
+      },
+      "R8": {
+        "on": true,
+        "since": "2026-11-25T21:40Z",
+        "by": "Dinis Cruz in b.abp's session, 25 Nov 2026: \"Yes\" (to switching on breakers for R8 and R5)",
+        "why": "reading a key store or private key into a session is never needed: signing goes through a script"
+      },
+      "R5": {
+        "on": true,
+        "since": "2026-11-25T21:40Z",
+        "by": "Dinis Cruz in b.abp's session, 25 Nov 2026: \"Yes\" (to switching on breakers for R8 and R5)",
+        "why": "push to dev on origin only; no force, deletion, tags or history rewrite"
       }
     }
   },
