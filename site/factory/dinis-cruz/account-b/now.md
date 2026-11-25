@@ -11,6 +11,8 @@ Updated 25 Nov 2026 19:02 UTC (`date -u`).
 
 - Lab: the kit's hook against 23 probe calls (lab/2026-11-25-hook-probes.md): 17 of 20 denials held. Design brief sent via b.maestro (briefs/).
 
+- Fix 4 (Dinis, 25 Nov): ABP hooks installed in this repository, log-only (lab/2026-11-25-fix-4-hooks-installed.md). Fixes 1 and 2 are in its policy.
+
 **Open**
 - Dinis, 25 Nov: census page, JSON and lab findings published in full ("no confidential data in there"), over b.security's ruling to seal them.
 - Real Claude Code runs against the hooks: refused by this session's auto mode; Dinis to choose how.
