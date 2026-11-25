@@ -20,7 +20,7 @@
 <meta name="twitter:title" content="Deploying an ABP">
 <meta name="twitter:description" content="The solutions to the gaps found in one Claude Code session, and how to deploy them: the hard boundaries outside Claude, then the ABP hooks and policy inside it, step by step.">
 <meta name="twitter:image" content="https://abp.agents.sovereignweb.site/assets/share/card-1200x630.jpg">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self'; object-src 'none'; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'none'; style-src 'self' 'unsafe-inline'; connect-src 'self'; object-src 'none'; base-uri 'none'">
 <style>
 :root{--bg:#f7f7f5;--fg:#1d1d1b;--muted:#55554f;--line:#deded8;--card:#fff;--accent:#0b5cad;--hot:#a8261b}
 @media (prefers-color-scheme:dark){:root{--bg:#141413;--fg:#ededea;--muted:#b4b4ae;--line:#33332f;--card:#1c1c1a;--accent:#7ab8ff;--hot:#ff8a7a}}
@@ -59,12 +59,21 @@ table{border-collapse:collapse;width:100%;font-size:.92rem}th,td{border-bottom:1
 <li><strong>The environment:</strong> take the <a href="../census-prompt.md">census</a> and remove network hosts and injected credentials the work does not need.</li>
 </ol>
 <h2>2. Install the hooks (inside Claude)</h2>
-<p>From the root of the agent's repository. These are this site's files: the <a href="https://sovereignwebsite.ai/abp/">ABP starter kit</a> (0.2.0) with the changes listed below.</p>
-<pre tabindex="0" aria-label="Install commands">mkdir -p .claude/hooks abp
-for f in .claude/settings.json .claude/hooks/abp.mjs abp/tools.mjs abp/run-report.schema.json abp/policies.json; do
-  curl -sf -o "$f" "https://raw.githubusercontent.com/SovereignWebsite/Site__Agent__ABP/dev/$f"
-done
-sha256sum .claude/hooks/abp.mjs     # compare with the file on GitHub before you trust it</pre>
+<p>From the root of the agent's repository. These are this site's files at a fixed commit: the <a href="https://sovereignwebsite.ai/abp/">ABP starter kit</a> (0.2.0) with the changes listed below.</p>
+<p>Pinned to commit <code>dafa95807266</code>, so what you fetch is what was tested. Each file's SHA-256 is listed here; the loop stops if any differs. Do not use a file whose hash does not match.</p>
+<pre tabindex="0" aria-label="Install commands">C=dafa958072669c1228e2a73c5aa1a48a9f513215
+mkdir -p .claude/hooks abp
+cat &gt; /tmp/abp.sha256 &lt;&lt;'SUMS'
+698a060c3213259ef60cc66d66c40108d307bfec29aabfc4e3849ca4b3119581  .claude/settings.json
+4acaf2f2824c983e652d1b9f4242357000421ccc924d15daaebc829f3261d1fc  .claude/hooks/abp.mjs
+775230948769eaaa738b4a41f5c79c88f291258cfc2fe4698a60dd1e536b0653  abp/tools.mjs
+206b0b1ec93483c823e6e33be92b2252b436043e944bb0ca7558b3f7df97afc3  abp/run-report.schema.json
+887685bc818df364c9cbd6f64a72e5121b269ecd741b398d2ddf9e0c266d04d7  abp/policies.json
+SUMS
+while read -r sum f; do
+  curl -sf -o "$f" "https://raw.githubusercontent.com/SovereignWebsite/Site__Agent__ABP/$C/$f" || { echo "could not fetch $f"; break; }
+done &lt; /tmp/abp.sha256
+sha256sum -c /tmp/abp.sha256 || { echo "STOP: a file does not match its pinned hash"; rm -f .claude/settings.json; }</pre>
 <ol>
 <li><strong>Edit <code>abp/policies.json</code>:</strong> set <code>operator</code>, <code>git.remote_url</code>, <code>identity.label_suffix</code>, and one entry in <code>roles</code> per agent with the paths it writes and the tools it may use. Delete the two roles of this site.</li>
 <li><strong>Identity:</strong> the hook knows an agent by <code>ABP_ROLE</code>, or by the one key label <code>&lt;role&gt;&lt;suffix&gt;</code> in its key store (here <code>b-abp-sovereignwebsite</code> in <code>~/.sg-send/keys</code>).</li>
