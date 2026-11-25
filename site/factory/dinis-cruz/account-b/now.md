@@ -7,7 +7,7 @@ Updated 25 Nov 2026 19:02 UTC (`date -u`).
 - Area written and registered in site/factory/index.json.
 - Draft policy list for account B's 22 agents on the today page, plus b.abp: [policies/policies.json](policies/policies.json). Data only, none enforced.
 
-- Capability census from the inside (Dinis, 25 Nov): surface/index.html (ASCII map, mandate against reach), surface/census/ (JSON), surface/census-prompt.md (any platform). Committed, held from push until Dinis says it may be public.
+- Capability census from the inside (Dinis, 25 Nov): surface/index.html (ASCII map, mandate against reach), surface/census/ (JSON), surface/census-prompt.md (any platform). Pushed with API host names, server ids and repository counts held back until Dinis decides.
 
 **Open**
 - Most agents' homes are not named on the today page: each grant's write paths say "to confirm".

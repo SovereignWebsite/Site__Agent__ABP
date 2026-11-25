@@ -126,13 +126,13 @@
       ],
       "risk": "high",
       "in_mandate": "push to dev of Site__Agent__ABP only",
-      "why": "list_repos shows push on 19 other repositories this account reaches"
+      "why": "the account reaches more repositories with push than this one"
     },
     {
       "family": "network",
       "name": "proxy-injected credentials",
       "can": [
-        "authenticated calls to api.mistral.ai, api.themoviedb.org, www.googleapis.com, discoveryengine, factchecktools, kgsearch and pagespeedonline googleapis hosts, from any command"
+        "authenticated calls to several API hosts (names held back), from any command"
       ],
       "risk": "high",
       "in_mandate": false,
@@ -176,12 +176,13 @@
   "deltas_seen_in_this_session": [
     {
       "at": "session start, about 18:59Z",
-      "what": "three connector servers listed under opaque ids (a7b6d141..., fa9cc734..., 1a59c906...) with tool names like send_message, create_draft, account-upgrade"
+      "what": "three connector servers listed under opaque ids (held back here), with tool names like send_message, create_draft, account-upgrade"
     },
     {
       "at": "between 19:01Z and 19:03Z",
       "what": "the same tools reappeared under readable names: Gmail, Suno_MCP, Claude_Docs; the opaque ids were removed. Nothing in the session asked for them."
     }
   ],
-  "not_seen": "Memory tools, browser and desktop control appear only as skills that would need turning on; not counted as live reach here."
+  "not_seen": "Memory tools, browser and desktop control appear only as skills that would need turning on; not counted as live reach here.",
+  "published_note": "API host names, server ids and repository counts held back from the public copy until Dinis decides."
 }
