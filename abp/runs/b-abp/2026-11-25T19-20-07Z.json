@@ -1,0 +1,161 @@
+{
+ "$schema": "../../run-report.schema.json",
+ "agent": "b-abp-sovereignwebsite",
+ "run": "2026-11-25T19-20-07Z",
+ "started": "2026-11-25T19:20:07.844Z",
+ "ended": "2026-11-25T21:12:50.084Z",
+ "line": "b.abp start and first session: key, area, draft policies, census, lab, hooks installed here with R3 and R6 (tamper) on, worked example",
+ "policy": {
+  "version": "0.2.0",
+  "sha256": "093aaa0e7f5787ee"
+ },
+ "text_included": false,
+ "sessions": 2,
+ "requests": [
+  {
+   "t": "2026-11-25T19:20:08.160Z",
+   "chars": 33,
+   "sha256": "7a4b48087dd26c49"
+  },
+  {
+   "t": "2026-11-25T20:56:57.463Z",
+   "chars": 72,
+   "sha256": "dd610f9cd4b8abb2"
+  },
+  {
+   "t": "2026-11-25T20:57:48.721Z",
+   "chars": 469,
+   "sha256": "7ab3b24029bc5e8a"
+  },
+  {
+   "t": "2026-11-25T20:58:23.993Z",
+   "chars": 118,
+   "sha256": "e4a6166316fe6a11"
+  },
+  {
+   "t": "2026-11-25T20:59:04.480Z",
+   "chars": 469,
+   "sha256": "7ab3b24029bc5e8a"
+  },
+  {
+   "t": "2026-11-25T21:00:48.916Z",
+   "chars": 40,
+   "sha256": "86c4d6f0d8b15650"
+  },
+  {
+   "t": "2026-11-25T21:02:18.539Z",
+   "chars": 469,
+   "sha256": "7ab3b24029bc5e8a"
+  },
+  {
+   "t": "2026-11-25T21:03:10.682Z",
+   "chars": 469,
+   "sha256": "7ab3b24029bc5e8a"
+  },
+  {
+   "t": "2026-11-25T21:12:07.161Z",
+   "chars": 30,
+   "sha256": "830dcb8eed7c31d5"
+  }
+ ],
+ "session_events": [
+  {
+   "t": "2026-11-25T19:20:07.844Z",
+   "source": "startup"
+  },
+  {
+   "t": "2026-11-25T21:11:51.936Z",
+   "source": "resume"
+  }
+ ],
+ "compactions": {
+  "count": 0,
+  "re_anchored": 0
+ },
+ "tool_calls": {
+  "total": 27,
+  "by_kind": {
+   "write-unidentified": 1,
+   "tamper": 1,
+   "shell": 14,
+   "connector": 6,
+   "denied-tool": 2,
+   "read": 3
+  }
+ },
+ "policies_executed": {
+  "R6": 2,
+  "R2": 2,
+  "R3": 1
+ },
+ "policies_instrumented": [
+  "R2",
+  "R3",
+  "R4",
+  "R5",
+  "R6",
+  "R7",
+  "R8",
+  "R9"
+ ],
+ "mandate": {
+  "actions": 22,
+  "commits": []
+ },
+ "reach": {
+  "attempts": 5,
+  "blocked": 1,
+  "observed": 4,
+  "denied": [
+   {
+    "t": "2026-11-25T20:55:50.774Z",
+    "tool": "Bash",
+    "rule": "R6",
+    "kind": "write-unidentified",
+    "target_chars": 1028,
+    "target_sha256": "f2e672a690f2a56c"
+   },
+   {
+    "t": "2026-11-25T20:56:05.509Z",
+    "tool": "Bash",
+    "rule": "R6",
+    "kind": "tamper",
+    "target_chars": 1501,
+    "target_sha256": "9db12e531fa090d2"
+   },
+   {
+    "t": "2026-11-25T20:57:50.609Z",
+    "tool": "ReadNotifications",
+    "rule": "R2",
+    "kind": "denied-tool",
+    "target_chars": 0,
+    "target_sha256": "894977d5b81bc4f5"
+   },
+   {
+    "t": "2026-11-25T20:59:06.615Z",
+    "tool": "ReadNotifications",
+    "rule": "R2",
+    "kind": "denied-tool",
+    "target_chars": 0,
+    "target_sha256": "894977d5b81bc4f5"
+   },
+   {
+    "t": "2026-11-25T21:01:39.550Z",
+    "tool": "mcp__Claude_Docs__guide",
+    "rule": "R3",
+    "kind": "connector",
+    "target_chars": 0,
+    "target_sha256": "894977d5b81bc4f5"
+   }
+  ]
+ },
+ "breaches": [],
+ "counts": {
+  "requests": 9,
+  "tool_calls": 27,
+  "in_mandate": 22,
+  "out_of_mandate": 5,
+  "attempts": 5,
+  "breaches": 0
+ }
+}

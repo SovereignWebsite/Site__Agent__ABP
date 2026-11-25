@@ -13,7 +13,10 @@ Updated 25 Nov 2026 19:02 UTC (`date -u`).
 
 - Fix 4 (Dinis, 25 Nov): ABP hooks installed in this repository, log-only (lab/2026-11-25-fix-4-hooks-installed.md). Fixes 1 and 2 are in its policy.
 
+- Worked example saved (Dinis, 25 Nov), without names: surface/worked-example-agent-team.md. Breakers R3 and R6 (tamper) on here; PR-1 applied. First run report: abp/runs/b-abp/2026-11-25T19-20-07Z.json (its 'sessions: 2' includes the 19:20 lab claude -p run, which logged to the same folder).
+
 **Open**
+- Next: the before/after picture on the census page; a SessionStart check that .claude/ and abp/ match the last commit b.abp signed (b.security's residual).
 - Dinis, 25 Nov: census page, JSON and lab findings published in full ("no confidential data in there"), over b.security's ruling to seal them.
 - Real Claude Code runs against the hooks: refused by this session's auto mode; Dinis to choose how.
 - Most agents' homes are not named on the today page: each grant's write paths say "to confirm".
