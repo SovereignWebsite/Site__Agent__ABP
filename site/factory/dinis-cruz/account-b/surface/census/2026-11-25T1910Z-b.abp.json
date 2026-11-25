@@ -6,9 +6,6 @@
   "taken": "2026-11-25T19:10Z",
   "method": "The agent listed the tools, servers and proxy hosts its own session context shows it. Nothing was called to test them; no connector was used.",
   "mandate": "Start prompt: 'You never use a connector.' Draft policy R3: no connector. Writes only its own area.",
-  "guardrails_running": {
-    "hooks": 0
-  },
   "capabilities": [
     {
       "family": "connectors",
