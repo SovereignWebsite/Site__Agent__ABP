@@ -2,7 +2,7 @@
   "about": "Draft Agent Behaviour Policies for account B's agents. Data only: NONE IS ENFORCED until Dinis says so, in b.abp's session. Deny by default: what is not granted here is outside the mandate.",
   "status": "draft",
   "version": "0.1.0",
-  "updated": "2026-11-25T19:02Z",
+  "updated": "2026-11-25T20:38Z",
   "kept_by": "b.abp@SovereignWebsite.dinis",
   "authority": "Dinis Cruz",
   "agents_source": "https://maestro.agents.sovereignweb.site/factory/dinis-cruz/account-b/today/ (read 25 Nov 2026)",
@@ -422,5 +422,28 @@
         "Never relaxes a policy without Dinis, never writes a HOLD, never uses a connector."
       ]
     }
+  },
+  "common": {
+    "secret_reads": [
+      "~/.abp/keys/**",
+      "~/.abp/salt",
+      "**/.credentials/**",
+      "**/.env",
+      "**/.env.*",
+      "**/*.pem",
+      "~/.ssh/**",
+      "~/.aws/**",
+      "~/.config/gh/**",
+      "~/.sw-secret/**",
+      "~/.sg-send/**"
+    ],
+    "shell_deny_added": [
+      [
+        "R8",
+        "(^|\\s)(cat|less|more|head|tail|cp|scp|base64|xxd|od|strings|grep|sed|awk|python3?|node)\\s[^;|&]*(~|\\$HOME|/root|/home/[^/\\s]+)/\\.(sw-secret|sg-send|ssh)(/|\\s|$)",
+        "never read a key store or private key from the shell"
+      ]
+    ],
+    "about": "Starts from the ABP kit's policies.template.json (0.2.0) common section; adds our key stores (fixes 1 and 2 of lab/2026-11-25-hook-probes.md, tested 25 Nov)."
   }
 }

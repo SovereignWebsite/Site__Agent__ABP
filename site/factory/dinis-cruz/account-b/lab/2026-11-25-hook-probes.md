@@ -31,8 +31,8 @@ b.abp, 25 Nov 2026, 19:19 UTC (`date -u`). At Dinis Cruz's word in b.abp's sessi
 **17 of 20 denials held; 3 of 3 allowed calls passed.** The three that passed are the gap b.security named: the hook is a guardrail and an audit log, not a security boundary.
 
 ## New findings for this estate
-1. **Our own key stores are not in the kit's `secret_reads`.** `Read ~/.sw-secret/signing` (where tools/setup-signing.sh writes the OpenSSH signing key) and `~/.sg-send/**` both passed. Fix: add `~/.sw-secret/**` and `~/.sg-send/**` to `common.secret_reads` in every SovereignWebsite policy. Proposed for the kit's keeper; not applied.
-2. **The shell is not checked for secret reads.** `cat ~/.sw-secret/signing` passed. Fix: add a `shell_deny` R8 pattern for reads of the secret paths (still a guardrail only).
+1. **Our own key stores are not in the kit's `secret_reads`.** `Read ~/.sw-secret/signing` (where tools/setup-signing.sh writes the OpenSSH signing key) and `~/.sg-send/**` both passed. Fix: add `~/.sw-secret/**` and `~/.sg-send/**` to `common.secret_reads` in every SovereignWebsite policy. Proposed for the kit's keeper; not applied. **Fix written and tested 25 Nov (lab/2026-11-25-fixes-1-2.md).**
+2. **The shell is not checked for secret reads.** `cat ~/.sw-secret/signing` passed. Fix: add a `shell_deny` R8 pattern for reads of the secret paths (still a guardrail only). **Fix written and tested 25 Nov (lab/2026-11-25-fixes-1-2.md).**
 3. **Proxy-injected credentials are invisible to the hook.** A plain GET to such a host is an authenticated API call. Fix: list those hosts in the policy and treat any shell call to them as R3 (a connector by another name).
 4. **No hook runs in Site__Agent__ABP itself** (`.claude/` holds commands only). Other homes not yet checked. The kit is published but not installed where our own agents work.
 
