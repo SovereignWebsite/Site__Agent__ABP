@@ -1,0 +1,43 @@
+{
+ "v": 1,
+ "id": "2026-11-27__iac-preventive-controls",
+ "agent": "b.abp@SovereignWebsite.dinis",
+ "account": "B",
+ "asked_at": "2026-11-27T17:37Z",
+ "session": "https://claude.ai/code/session_01Kw9UwBGqBsVqJmrrTHTGMY",
+ "title": "Stop agents not in policy/abp.json from committing to SovereignWebsite__IaC: remove the reach now, and decide on required checks",
+ "change": {
+  "repository": "SovereignWebsite/SovereignWebsite__IaC",
+  "branch": "dev",
+  "paths": [
+   ".claude/**",
+   "build/org-apply.mjs"
+  ],
+  "commits": [],
+  "patch_ids": []
+ },
+ "why": "Asked by Dinis in b.conductor's session after elevenlabs.b and soundcloud.b were started with IaC attached. Today nothing prevents a push to IaC's dev: no hook, a pre-approved push in .claude/settings.json, and a dev ruleset without required checks. Only the Checks run detects it, after the push.",
+ "checks": [
+  "read-only review of IaC dev: policy/abp.json, build/abp.mjs, .github/workflows/checks.yml, build/org-apply.mjs, .claude/settings.json",
+  "the four commits verified: team/keys.json only"
+ ],
+ "kind": "choice",
+ "flags": {
+  "main": false,
+  "money": false,
+  "legal": false,
+  "one_way_door": false,
+  "private_person": false,
+  "unfixed_vulnerability": true
+ },
+ "options": [
+  "a) Remove the reach: no new agent session gets IaC attached (keys published in its own site/keys/); an ABP hook in IaC blocks writes outside team/keys.json by agents not in policy/abp.json and replaces the pre-approved push",
+  "b) a) plus a required status check (Checks) on dev-safe, so IaC changes go through pull requests or a merge queue",
+  "c) Keep detection only; a red Checks run raises a HOLD"
+ ],
+ "recommendation": "a) now; b) when Dinis is ready for pull requests on IaC",
+ "needed_by": "",
+ "links": [
+  "https://github.com/SovereignWebsite/Site__Agent__ABP/blob/dev/site/factory/dinis-cruz/account-b/lab/2026-11-27-iac-commits-by-agents-not-in-policy.md"
+ ]
+}
