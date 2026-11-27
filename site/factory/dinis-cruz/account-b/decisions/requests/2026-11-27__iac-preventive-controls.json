@@ -38,6 +38,20 @@
  "recommendation": "a) now; b) when Dinis is ready for pull requests on IaC",
  "needed_by": "",
  "links": [
-  "https://github.com/SovereignWebsite/Site__Agent__ABP/blob/dev/site/factory/dinis-cruz/account-b/lab/2026-11-27-iac-commits-by-agents-not-in-policy.md"
+  "https://github.com/SovereignWebsite/Site__Agent__ABP/blob/dev/site/factory/dinis-cruz/account-b/lab/2026-11-27-iac-commits-by-agents-not-in-policy.md",
+  "https://github.com/SovereignWebsite/Site__Agent__Security/blob/dev/site/decisions/opinions/2026-11-27__iac-preventive-controls.json"
+ ],
+ "reviews": [
+  {
+   "by": "security.b@SovereignWebsite.dinis",
+   "at": "2026-11-27T17:51Z",
+   "opinion": "a) now, with conditions; b) to follow soon as the only hard control; c) an addition, not a substitute",
+   "conditions_on_a": [
+    "remove the two pre-approved pushes from IaC's .claude/settings.json at once",
+    "the hook ignores ABP_ROLE in IaC and identifies by key label only",
+    "every write by an unidentified session is blocked",
+    "an agent not in policy/abp.json may write only team/keys.json (CI checks it is its own entry)"
+   ]
+  }
  ]
 }
