@@ -50,3 +50,6 @@ security.b agreed the limits and paths, no exception for video or audio, and jud
 
 ## Round 3 (security.b, 01:48 UTC): character references in SVG
 A browser decodes `&#106;avascript:` and `on&#x6C;oad`; a text match does not. The SVG check now also refuses any numeric character reference (`&#`), `<style>` with `url(` or `@import`, `<a>` and `xml:base`. Tested: a clean SVG, a plain `<style>` and an `<animate>` pass; character-reference javascript: and onload, style url( and @import, `<a href>`, xml:base and `<script>` are refused. security.b: with this, the SVG check is enough for an exception list that names svg.
+
+## Round 4 (security.b, 01:51 UTC): namespace prefixes
+`<x:script xmlns:x="http://www.w3.org/2000/svg">` runs too. The SVG check now refuses any prefixed element and any `xmlns:` declaration other than `xmlns:xlink`. Tested: a clean SVG, one using `xmlns:xlink` with `xlink:href="#a"`, and a style attribute with `url(#g)` pass; `<x:script>`, `<svg:g>` and `xmlns:foo` are refused. security.b: with this, the SVG check is closed.

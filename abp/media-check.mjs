@@ -28,8 +28,8 @@ const sniff = b => {
 const typeOf = (f, b) => sniff(b) || ({ jpg: 'jpeg', svgz: 'svg', tgz: 'gzip', gz: 'gzip' }[(EXT.exec(f)?.[1] || '').toLowerCase()] ?? ((EXT.exec(f)?.[1] || '').toLowerCase() || null))
 // security.b's SVG content check: no script, no on* handlers, no javascript: or data: URLs, no foreignObject,
 // iframe or embed, no external href, at most 50 KB; and (round 3) no numeric character reference (&#), which a browser
-// decodes but a text match does not see, no <style> with url( or @import, no <a> and no xml:base.
-const svgSafe = b => { const t = b.toString('utf8'); return b.length <= 51200 && !/&#|<script|\son[a-z]+\s*=|javascript:|data:|<foreignObject|<iframe|<embed|<a[\s>\/]|xml:base|(xlink:)?href\s*=\s*["']\s*(https?:)?\/\//i.test(t) && !/<style[\s\S]*?(url\(|@import)/i.test(t) }
+// decodes but a text match does not see, no <style> with url( or @import, no <a> and no xml:base; and (round 4) no prefixed element (<x:script>) and no xmlns: other than xmlns:xlink.
+const svgSafe = b => { const t = b.toString('utf8'); return b.length <= 51200 && !/&#|<script|\son[a-z]+\s*=|javascript:|data:|<foreignObject|<iframe|<embed|<a[\s>\/]|xml:base|(xlink:)?href\s*=\s*["']\s*(https?:)?\/\//i.test(t) && !/<style[\s\S]*?(url\(|@import)/i.test(t) && !/<\/?[a-z][\w.-]*:/i.test(t) && !/xmlns:(?!xlink\s*=)/i.test(t) }
 const PICTURE = /^(png|jpeg|gif|webp|ico)$/
 let exempt = [], cap = Infinity; try { const m = JSON.parse(fs.readFileSync('abp/policies.json', 'utf8')).media || {}; exempt = m.exempt || []; cap = m.exempt_total_bytes ?? Infinity } catch {}
 const glob = g => new RegExp('^' + g.split(/(\*\*\/?|\*)/).map(t => t[1] === '*' ? '.*' : t === '*' ? '[^/]*' : t.replace(/[.+?^${}()|[\]\\]/g, '\\$&')).join('') + '$')
