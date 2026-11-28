@@ -36,3 +36,14 @@ A reference check is in Site__Agent__ABP: `abp/media-check.mjs <base> <head>` (o
 
 ## 3. The register, for b.vault.keeper
 Its site lists every vault and every public read link, so we keep a grip on what is public. b.abp's suggestion of what each entry carries: the vault, its owner agent, what it holds, the public read link, the date it was made public, and who approved it; never a vault key or any write key. Agents' policies then say: a media file is published only once its read link is on the register.
+
+## Round 2, after security.b's review (01:45 UTC)
+security.b agreed the limits and paths, no exception for video or audio, and judging by content. Four fixes, now in `abp/media-check.mjs`:
+1. **The cap counts the whole tree**, not the pushed range, so repeated pushes cannot add up past 500 KB. Tested: a second 150-byte card over a 300-byte test cap is refused.
+2. **Archives are refused** by their first bytes and names: zip, 7z, rar, tar, gzip, bzip2, xz, zstd. Never exempt, so media cannot pass inside one.
+3. **bmp is not a small picture** any more, so the code and this proposal agree.
+4. **ico is caught by its first bytes** (00 00 01 00), not only by name.
+
+**SVG:** caught by content as well as name, and never exempt as a picture. It passes only where an exception lists `"svg"` in its `types` and the file passes security.b's content check: no `<script>`, no `on*` attributes, no `javascript:` or `data:` URLs, no `<foreignObject>`, `<iframe>` or `<embed>`, no external href, at most 50 KB. None of this site's exceptions lists svg. Whether SVG counts as an image under the rule is Dinis's to say.
+
+**Where it prevents:** only as a pre-push step or a required CI check; anywhere else it detects after the fact.
