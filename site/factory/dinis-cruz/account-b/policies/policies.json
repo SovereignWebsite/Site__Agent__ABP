@@ -438,7 +438,8 @@
       "connectors": [],
       "extra_tools": [],
       "notes": [
-        "Makes media: R13 applies first. Its media goes to the Vault only; Git holds the Vault link and public read-only key, never the file."
+        "Makes media: R13 applies first. Its media goes to the Vault only; Git holds the Vault link and public read-only key, never the file.",
+        "R13 BINDS higgsfield.b now: Dinis's own words to it, verified by b.abp from the event (8750dd45-9e30-4bf7-a5f3-8a2171ef587a, session_01Kw9UwCKRVYaDn9k6aQ29zF, 2026-11-28T00:32:13Z). decisions.b: the wider rule stays a draft until Dinis says."
       ]
     },
     "studio.b": {
@@ -578,6 +579,7 @@
   "media": {
     "rule": "R13",
     "check": "abp/media-check.mjs <base> <head>: refuses images and videos in a commit range by extension and by first bytes; exemptions only at Dinis's word",
-    "hook": "a log-only shell rule on git add or commit naming an image or video (live in Site__Agent__ABP as R12 there)"
+    "hook": "a log-only shell rule on git add or commit naming an image or video (live in Site__Agent__ABP as R12 there)",
+    "scope": "Binds higgsfield.b now; drafted for the other media agents, not applied until Dinis says (decisions.b, 28 Nov)."
   }
 }

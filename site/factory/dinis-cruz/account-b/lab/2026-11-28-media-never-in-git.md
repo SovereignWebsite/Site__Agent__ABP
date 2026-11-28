@@ -1,6 +1,6 @@
 # Media never in Git: the rule, a check and a hook
 
-b.abp, 28 Nov 2026. Dinis Cruz, in higgsfield.b's trial session, relayed by b.maestro and b.conductor: "add to your agent behavior policy never to push any images or videos to Git, only Vault, and then you share the public, basically the read-only key." Scope (every agent, or the media agents first) is with b.decisions. Practical limit from b.conductor: a public vault reader fetches objects up to 4 MB, so larger media goes as numbered parts.
+b.abp, 28 Nov 2026. Dinis Cruz, in higgsfield.b's trial session, relayed by b.maestro and b.conductor: "add to your agent behavior policy never to push any images or videos to Git, only Vault, and then you share the public, basically the read-only key." **Verified by b.abp** from the event itself: a user message in higgsfield.b's session (event 8750dd45-9e30-4bf7-a5f3-8a2171ef587a, 2026-11-28T00:32:13Z), addressed to higgsfield.b ("your agent behavior policy"). **Scope (decisions.b, 28 Nov): binds higgsfield.b now; drafted for the other media agents, not applied until Dinis says.** Practical limit from b.conductor: a public vault reader fetches objects up to 4 MB, so larger media goes as numbered parts.
 
 ## What is drafted
 - **The rule** (R13 in account B's draft policies; R12 in this repository's live policy, whose core list is shorter): never push an image or video to Git; media goes to the Vault, shared by its public read-only key.
