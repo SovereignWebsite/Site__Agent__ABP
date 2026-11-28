@@ -75,7 +75,7 @@
     {
       "id": "R12",
       "barrier": "hook",
-      "rule": "Never push an image or a video to Git: media goes to the Vault, shared by its public read-only key; above 4 MB, as numbered parts. (Dinis Cruz, 28 Nov 2026, relayed.)"
+      "rule": "Images, video and audio go to a vault, never to Git, shared by a public read link listed on the vault keeper's site. Small pictures (link-preview images, icons, logos) stay in Git only as listed exceptions within their size limit. (Dinis Cruz, record 2026-11-28__media-in-vault.)"
     }
   ],
   "breakers": {
@@ -378,11 +378,29 @@
     ]
   },
   "media": {
-    "about": "R12: images and videos never go to Git. abp/media-check.mjs refuses them in a commit range by extension and by their first bytes. Exemptions only at Dinis's word.",
+    "about": "R12, record 2026-11-28__media-in-vault (Dinis Cruz, 28 Nov 2026): every agent; small pictures stay in Git as listed exceptions. abp/media-check.mjs refuses images, video and audio in a commit range by extension and first bytes, except a small picture (png, jpeg, gif, webp, ico) within its exception's max_bytes.",
+    "status": "exceptions proposed by b.abp, for security.b's review",
+    "exempt_total_bytes": 512000,
     "exempt": [
       {
-        "glob": "site/assets/share/card-1200x630.jpg",
-        "why": "the link-preview card every page's Open Graph tags point to; seeded with the site (cb3ef21). Kept pending Dinis's decision on whether share cards are exempt or move to the Vault."
+        "glob": "site/assets/share/**",
+        "max_bytes": 153600,
+        "why": "link-preview cards for the Open Graph and Twitter tags every page needs"
+      },
+      {
+        "glob": "site/favicon.*",
+        "max_bytes": 51200,
+        "why": "the site's favicon"
+      },
+      {
+        "glob": "site/assets/icons/**",
+        "max_bytes": 51200,
+        "why": "app and touch icons"
+      },
+      {
+        "glob": "site/assets/brand/**",
+        "max_bytes": 102400,
+        "why": "small logos"
       }
     ]
   }

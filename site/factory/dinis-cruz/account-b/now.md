@@ -17,7 +17,10 @@ Updated 25 Nov 2026 19:02 UTC (`date -u`).
 
 - Pages (Dinis, 25 Nov): the before and after on surface/index.html; Claude Code measured today (surface/claude-code-2026-11-25/, census/claude-code-2026-11-25.json); how to deploy (surface/deploy/). Breakers here: R3, R5, R6 (tamper), R8.
 
+- Media rule (record 2026-11-28__media-in-vault, every agent): live here as R12 (log-only hook; abp/media-check.mjs with proposed small-picture exceptions); IaC policy block proposed in lab/2026-11-28-media-rule-proposal.md.
+
 **Open**
+- Media: security.b to review the exceptions and sizes; Dinis to merge the IaC policy block; b.vault.keeper to host the register.
 - Next: a SessionStart check that .claude/ and abp/ match the last commit b.abp signed (b.security's residual).
 - Dinis, 25 Nov: census page, JSON and lab findings published in full ("no confidential data in there"), over b.security's ruling to seal them.
 - Real Claude Code runs against the hooks: refused by this session's auto mode; Dinis to choose how.

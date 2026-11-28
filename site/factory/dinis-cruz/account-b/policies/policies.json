@@ -2,7 +2,7 @@
   "about": "Draft Agent Behaviour Policies for account B's agents. Data only: NONE IS ENFORCED until Dinis says so, in b.abp's session. Deny by default: what is not granted here is outside the mandate.",
   "status": "draft",
   "version": "0.1.0",
-  "updated": "2026-11-28T00:50Z",
+  "updated": "2026-11-28T01:39Z",
   "kept_by": "b.abp@SovereignWebsite.dinis",
   "authority": "Dinis Cruz",
   "agents_source": "https://maestro.agents.sovereignweb.site/factory/dinis-cruz/account-b/today/ (read 25 Nov 2026)",
@@ -24,7 +24,7 @@
     "R10": "Every time comes from date -u. Never invent a fact.",
     "R11": "If a HOLD written by security exists, stop and say why. Only Dinis lifts it.",
     "R12": "Plain British English, no em dashes.",
-    "R13": "Never push an image or a video to Git: media goes to the Vault and is shared by its public read-only key; above 4 MB, as numbered parts. (Dinis Cruz, 28 Nov 2026, in higgsfield.b's session, relayed by b.maestro and b.conductor; scope with b.decisions.)"
+    "R13": "Images, video and audio go to a vault, never to Git, shared by a public read link listed on the vault keeper's site. Small pictures stay in Git only as listed exceptions within their size limit. (Dinis Cruz, record 2026-11-28__media-in-vault: every agent.)"
   },
   "denied_by_default": [
     "every connector",
@@ -580,6 +580,6 @@
     "rule": "R13",
     "check": "abp/media-check.mjs <base> <head>: refuses images and videos in a commit range by extension and by first bytes; exemptions only at Dinis's word",
     "hook": "a log-only shell rule on git add or commit naming an image or video (live in Site__Agent__ABP as R12 there)",
-    "scope": "Binds higgsfield.b now; drafted for the other media agents, not applied until Dinis says (decisions.b, 28 Nov)."
+    "scope": "Every agent (record 2026-11-28__media-in-vault, Dinis Cruz, 28 Nov). The rule for IaC policy/abp.json is proposed in lab/2026-11-28-media-rule-proposal.md (Dinis's merge); exceptions for security.b's review."
   }
 }

@@ -1,6 +1,6 @@
 ---
 title: "ABP: b-abp-sovereignwebsite"
-policy: abp/policies.json v0.2.0 (sha256:730fb66d4424a2b9)
+policy: abp/policies.json v0.2.0 (sha256:397158ae5dd3f57e)
 generated: by node abp/tools.mjs build; never edited by hand
 ---
 # ABP: b-abp-sovereignwebsite
@@ -37,7 +37,7 @@ generated: by node abp/tools.mjs build; never edited by hand
 - **R9** Commit only under your own name (subject '<role>-sovereignwebsite: ...'), signed with your own key. *(held by a hook)*
 - **R10** Every run ends with its run report (node abp/tools.mjs run-report) committed in abp/runs/<role>/. A run without one is a breach. *(checked every hour)*
 - **R11** If HOLD.md exists, stop after pulling and say why. Only Dinis Cruz lifts a hold. *(a rule, re-anchored at every compaction)*
-- **R12** Never push an image or a video to Git: media goes to the Vault, shared by its public read-only key; above 4 MB, as numbered parts. (Dinis Cruz, 28 Nov 2026, relayed.) *(held by a hook)*
+- **R12** Images, video and audio go to a vault, never to Git, shared by a public read link listed on the vault keeper's site. Small pictures (link-preview images, icons, logos) stay in Git only as listed exceptions within their size limit. (Dinis Cruz, record 2026-11-28__media-in-vault.) *(held by a hook)*
 
 ## Licence to operate
 
