@@ -71,6 +71,11 @@
       "id": "R11",
       "barrier": "rule",
       "rule": "If HOLD.md exists, stop after pulling and say why. Only Dinis Cruz lifts a hold."
+    },
+    {
+      "id": "R12",
+      "barrier": "hook",
+      "rule": "Never push an image or a video to Git: media goes to the Vault, shared by its public read-only key; above 4 MB, as numbered parts. (Dinis Cruz, 28 Nov 2026, relayed.)"
     }
   ],
   "breakers": {
@@ -234,6 +239,12 @@
       "^git\\s(.*\\s)?(apply|am)(\\s|$)",
       "a patch can rewrite a protected path; apply it through Write or Edit instead",
       "tamper"
+    ],
+    [
+      "R12",
+      "^git\\s(.*\\s)?(add|commit|stage)\\s[^;|&]*\\.([pP][nN][gG]|[jJ][pP][eE]?[gG]|[gG][iI][fF]|[wW][eE][bB][pP]|[aA][vV][iI][fF]|[hH][eE][iI][cC]|[hH][eE][iI][fF]|[bB][mM][pP]|[tT][iI][fF][fF]?|[iI][cC][oO]|[pP][sS][dD]|[mM][pP]4|[mM]4[vV]|[mM][oO][vV]|[wW][eE][bB][mM]|[mM][kK][vV]|[aA][vV][iI]|[wW][mM][vV]|[fF][lL][vV]|[mM][pP][eE]?[gG]|3[gG][pP])(\\s|$|[\\\"'])",
+      "images and videos go to the Vault, never to Git",
+      "media"
     ]
   ],
   "shell_deny_about": "[rule, regex, reason], tested on each shell segment (leading VAR=, sudo, env removed); the hook also checks the push branch, commit names, sends and protected writes A fourth element names the kind of denial (default shell), so a breaker limited to kinds can cover it.",
@@ -363,6 +374,15 @@
         "status": "applied",
         "decided": "Dinis Cruz in b.abp's session, 25 Nov 2026: \"Yes, switch on R3 and R6, and allow PR-1\"",
         "applied": "2026-11-25T21:01Z"
+      }
+    ]
+  },
+  "media": {
+    "about": "R12: images and videos never go to Git. abp/media-check.mjs refuses them in a commit range by extension and by their first bytes. Exemptions only at Dinis's word.",
+    "exempt": [
+      {
+        "glob": "site/assets/share/card-1200x630.jpg",
+        "why": "the link-preview card every page's Open Graph tags point to; seeded with the site (cb3ef21). Kept pending Dinis's decision on whether share cards are exempt or move to the Vault."
       }
     ]
   }

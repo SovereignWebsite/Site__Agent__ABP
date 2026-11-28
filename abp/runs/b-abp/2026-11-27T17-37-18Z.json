@@ -1,0 +1,91 @@
+{
+ "$schema": "../../run-report.schema.json",
+ "agent": "b-abp-sovereignwebsite",
+ "run": "2026-11-27T17-37-18Z",
+ "started": "2026-11-27T17:37:18.154Z",
+ "ended": "2026-11-28T00:50:17.892Z",
+ "line": "R12/R13 media never in Git: rule, check and log-only hook",
+ "policy": {
+  "version": "0.2.0",
+  "sha256": "730fb66d4424a2b9"
+ },
+ "text_included": false,
+ "sessions": 1,
+ "requests": [
+  {
+   "t": "2026-11-27T17:37:54.700Z",
+   "chars": 469,
+   "sha256": "7ab3b24029bc5e8a"
+  },
+  {
+   "t": "2026-11-27T17:38:46.299Z",
+   "chars": 469,
+   "sha256": "7ab3b24029bc5e8a"
+  },
+  {
+   "t": "2026-11-28T00:48:28.809Z",
+   "chars": 469,
+   "sha256": "7ab3b24029bc5e8a"
+  }
+ ],
+ "session_events": [
+  {
+   "t": "2026-11-28T00:48:28.610Z",
+   "source": "resume"
+  }
+ ],
+ "compactions": {
+  "count": 0,
+  "re_anchored": 0
+ },
+ "tool_calls": {
+  "total": 13,
+  "by_kind": {
+   "connector": 3,
+   "read": 3,
+   "shell": 7
+  }
+ },
+ "policies_executed": {
+  "R5": 1
+ },
+ "policies_instrumented": [
+  "R2",
+  "R3",
+  "R4",
+  "R5",
+  "R6",
+  "R7",
+  "R8",
+  "R9",
+  "R12"
+ ],
+ "mandate": {
+  "actions": 12,
+  "commits": []
+ },
+ "reach": {
+  "attempts": 1,
+  "blocked": 1,
+  "observed": 0,
+  "denied": [
+   {
+    "t": "2026-11-28T00:49:04.136Z",
+    "tool": "Bash",
+    "rule": "R5",
+    "kind": "shell",
+    "target_chars": 3897,
+    "target_sha256": "e5a98e8216dde958"
+   }
+  ]
+ },
+ "breaches": [],
+ "counts": {
+  "requests": 3,
+  "tool_calls": 13,
+  "in_mandate": 12,
+  "out_of_mandate": 1,
+  "attempts": 1,
+  "breaches": 0
+ }
+}

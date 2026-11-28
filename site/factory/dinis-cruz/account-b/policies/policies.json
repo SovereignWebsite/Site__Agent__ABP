@@ -2,7 +2,7 @@
   "about": "Draft Agent Behaviour Policies for account B's agents. Data only: NONE IS ENFORCED until Dinis says so, in b.abp's session. Deny by default: what is not granted here is outside the mandate.",
   "status": "draft",
   "version": "0.1.0",
-  "updated": "2026-11-25T20:40Z",
+  "updated": "2026-11-28T00:50Z",
   "kept_by": "b.abp@SovereignWebsite.dinis",
   "authority": "Dinis Cruz",
   "agents_source": "https://maestro.agents.sovereignweb.site/factory/dinis-cruz/account-b/today/ (read 25 Nov 2026)",
@@ -23,7 +23,8 @@
     "R9": "Every commit signed with the agent's own key, with Agent: and Claude-Session: trailers naming itself.",
     "R10": "Every time comes from date -u. Never invent a fact.",
     "R11": "If a HOLD written by security exists, stop and say why. Only Dinis lifts it.",
-    "R12": "Plain British English, no em dashes."
+    "R12": "Plain British English, no em dashes.",
+    "R13": "Never push an image or a video to Git: media goes to the Vault and is shared by its public read-only key; above 4 MB, as numbered parts. (Dinis Cruz, 28 Nov 2026, in higgsfield.b's session, relayed by b.maestro and b.conductor; scope with b.decisions.)"
   },
   "denied_by_default": [
     "every connector",
@@ -421,6 +422,116 @@
       "notes": [
         "Never relaxes a policy without Dinis, never writes a HOLD, never uses a connector."
       ]
+    },
+    "higgsfield.b": {
+      "session": "to confirm",
+      "focus": "images and video (trial)",
+      "home": "to confirm",
+      "state_seen": "named by b.conductor, 28 Nov",
+      "writes": [
+        "to confirm: its own area only"
+      ],
+      "branches": [
+        "dev"
+      ],
+      "sends_to": [],
+      "connectors": [],
+      "extra_tools": [],
+      "notes": [
+        "Makes media: R13 applies first. Its media goes to the Vault only; Git holds the Vault link and public read-only key, never the file."
+      ]
+    },
+    "studio.b": {
+      "session": "to confirm",
+      "focus": "design and media studio",
+      "home": "to confirm",
+      "state_seen": "named by b.conductor, 28 Nov",
+      "writes": [
+        "to confirm: its own area only"
+      ],
+      "branches": [
+        "dev"
+      ],
+      "sends_to": [],
+      "connectors": [],
+      "extra_tools": [],
+      "notes": [
+        "Makes media: R13 applies first. Its media goes to the Vault only; Git holds the Vault link and public read-only key, never the file."
+      ]
+    },
+    "instagram.b": {
+      "session": "to confirm",
+      "focus": "Instagram posts",
+      "home": "to confirm",
+      "state_seen": "named by b.conductor, 28 Nov",
+      "writes": [
+        "to confirm: its own area only"
+      ],
+      "branches": [
+        "dev"
+      ],
+      "sends_to": [],
+      "connectors": [],
+      "extra_tools": [],
+      "notes": [
+        "Makes media: R13 applies first. Its media goes to the Vault only; Git holds the Vault link and public read-only key, never the file."
+      ]
+    },
+    "elevenlabs.b": {
+      "session": "to confirm",
+      "focus": "voice and audio",
+      "home": "to confirm",
+      "state_seen": "named by b.conductor, 28 Nov",
+      "writes": [
+        "to confirm: its own area only"
+      ],
+      "branches": [
+        "dev"
+      ],
+      "sends_to": [],
+      "connectors": [],
+      "extra_tools": [],
+      "notes": [
+        "Makes media: R13 applies first. Its media goes to the Vault only; Git holds the Vault link and public read-only key, never the file.",
+        "Started with SovereignWebsite__IaC attached by mistake (27 Nov): see lab/2026-11-27-iac-commits-by-agents-not-in-policy.md."
+      ]
+    },
+    "soundcloud.b": {
+      "session": "to confirm",
+      "focus": "music publishing",
+      "home": "to confirm",
+      "state_seen": "named by b.conductor, 28 Nov",
+      "writes": [
+        "to confirm: its own area only"
+      ],
+      "branches": [
+        "dev"
+      ],
+      "sends_to": [],
+      "connectors": [],
+      "extra_tools": [],
+      "notes": [
+        "Makes media: R13 applies first. Its media goes to the Vault only; Git holds the Vault link and public read-only key, never the file.",
+        "Started with SovereignWebsite__IaC attached by mistake (27 Nov): see lab/2026-11-27-iac-commits-by-agents-not-in-policy.md."
+      ]
+    },
+    "suno.b": {
+      "session": "to confirm",
+      "focus": "music (the today page lists it as b.suno)",
+      "home": "to confirm",
+      "state_seen": "named by b.conductor, 28 Nov",
+      "writes": [
+        "to confirm: its own area only"
+      ],
+      "branches": [
+        "dev"
+      ],
+      "sends_to": [],
+      "connectors": [],
+      "extra_tools": [],
+      "notes": [
+        "Makes media: R13 applies first. Its media goes to the Vault only; Git holds the Vault link and public read-only key, never the file."
+      ]
     }
   },
   "common": {
@@ -463,5 +574,10 @@
         "why": "the hook trusts any command that runs it; an agent that edits it can make it print the key"
       }
     ]
+  },
+  "media": {
+    "rule": "R13",
+    "check": "abp/media-check.mjs <base> <head>: refuses images and videos in a commit range by extension and by first bytes; exemptions only at Dinis's word",
+    "hook": "a log-only shell rule on git add or commit naming an image or video (live in Site__Agent__ABP as R12 there)"
   }
 }
