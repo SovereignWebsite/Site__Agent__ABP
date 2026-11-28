@@ -47,3 +47,6 @@ security.b agreed the limits and paths, no exception for video or audio, and jud
 **SVG:** caught by content as well as name, and never exempt as a picture. It passes only where an exception lists `"svg"` in its `types` and the file passes security.b's content check: no `<script>`, no `on*` attributes, no `javascript:` or `data:` URLs, no `<foreignObject>`, `<iframe>` or `<embed>`, no external href, at most 50 KB. None of this site's exceptions lists svg. Whether SVG counts as an image under the rule is Dinis's to say.
 
 **Where it prevents:** only as a pre-push step or a required CI check; anywhere else it detects after the fact.
+
+## Round 3 (security.b, 01:48 UTC): character references in SVG
+A browser decodes `&#106;avascript:` and `on&#x6C;oad`; a text match does not. The SVG check now also refuses any numeric character reference (`&#`), `<style>` with `url(` or `@import`, `<a>` and `xml:base`. Tested: a clean SVG, a plain `<style>` and an `<animate>` pass; character-reference javascript: and onload, style url( and @import, `<a href>`, xml:base and `<script>` are refused. security.b: with this, the SVG check is enough for an exception list that names svg.
